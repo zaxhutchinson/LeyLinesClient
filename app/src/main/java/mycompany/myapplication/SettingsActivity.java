@@ -1,15 +1,20 @@
 package mycompany.myapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -77,6 +82,20 @@ public class SettingsActivity extends ActionBarActivity implements AdapterView.O
             sensitivitySpinner.setEnabled(false);
             button.setEnabled(true);
         }
+
+        //disallows further editing after account is created and confirmed
+        //TODO: implement disabling accounts at some point
+        if(sharedPreferences.getBoolean("pref_key_account_setup",false)) {
+            EditText accountField = (EditText)findViewById(R.id.editTextUid);
+            accountField.setText("User ID: " + sharedPreferences.getString("pref_key_UID",""));
+            accountField.setEnabled(false);
+            accountField = (EditText)findViewById(R.id.editTextHost);
+            accountField.setText("Host: " + sharedPreferences.getString("pref_key_HOST",""));
+            accountField.setEnabled(false);
+            accountField = (EditText)findViewById(R.id.editTextPort);
+            accountField.setText("Port: " + sharedPreferences.getString("pref_key_PORT",""));
+            accountField.setEnabled(false);
+        }
     }
 
     @Override
@@ -132,10 +151,59 @@ public class SettingsActivity extends ActionBarActivity implements AdapterView.O
             Intent preferences = new Intent(this, AdvancedSettingsActivity.class);
             startActivity(preferences);
         }
+
+        if (R.id.button5 == id) {
+            TextView textView = (TextView)findViewById(R.id.editTextUid);
+            String uid = textView.getText().toString();
+            textView = (TextView)findViewById(R.id.editTextHost);
+            String host = textView.getText().toString();
+            textView = (TextView)findViewById(R.id.editTextPort);
+            String port = textView.getText().toString();
+            SendAccountFragment sendAccountFragment = new SendAccountFragment().newInstance(uid,host,port);
+            sendAccountFragment.show(getSupportFragmentManager(),"sendAccountFragment");
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public static class SendAccountFragment extends DialogFragment {
+
+        public SendAccountFragment newInstance(String requestedUid, String selectedHost, String selectedPort) {
+            SendAccountFragment sendAccountFragment = new SendAccountFragment();
+            Bundle args = new Bundle();
+            args.putString("UID", requestedUid);
+            args.putString("HOST", selectedHost);
+            args.putString("PORT", selectedPort);
+            sendAccountFragment.setArguments(args);
+            return sendAccountFragment;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            final String uid = getArguments().getString("UID");
+            final String host = getArguments().getString("HOST");
+            final String port = getArguments().getString("port");
+            String message = String.format("Desired UID: %s\nServer Location: %s:%s\nIs this correct?",uid,host,port);
+
+            builder.setMessage(message)
+                    .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            RequestAccountTask requestAccountTask = new RequestAccountTask(getActivity());
+                            requestAccountTask.execute(uid, host, port);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 }

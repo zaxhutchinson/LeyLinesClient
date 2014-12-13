@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.LocationListener;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -83,12 +85,13 @@ public class MyActivity extends ActionBarActivity implements
     @Override
     public void onClick(View view) {
 
-        //TODO rename these to better reflect their purpose and/or remove when not needed
-        EditText editHost = (EditText)findViewById(R.id.editTextHost);
-        EditText editPort = (EditText)findViewById(R.id.editTextPort);
-        EditText editMessage = (EditText)findViewById(R.id.editTextMessage);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (editHost.getText().toString().length() > 0 && editPort.getText().toString().length() > 0 && editMessage.getText().toString().length() > 0) {
+        if (sharedPreferences.getBoolean("pref_key_account_setup",false)) {
+
+            String Uid = sharedPreferences.getString("pref_key_UID","");
+            String Host = sharedPreferences.getString("pref_key_HOST","");
+            String Port = sharedPreferences.getString("pref_key_PORT","");
 
             int id = view.getId();
 
@@ -101,34 +104,23 @@ public class MyActivity extends ActionBarActivity implements
 
             if (id == R.id.refreshButton) {
                 RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
-                requestRefreshTask.execute(editHost.getText().toString(), editPort.getText().toString(), editMessage.getText().toString());
-
+                requestRefreshTask.execute(Uid, Host, Port);
             }
             if (id == R.id.trackerButton) {
-                //gpsIntent.
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
-                toggleTrackerTask.execute(editHost.getText().toString(), editPort.getText().toString(), editMessage.getText().toString());
+                toggleTrackerTask.execute(Uid, Host, Port);
             }
             if (id == R.id.displayButton) {
                 ChangeDisplayTask changeDisplayTask = new ChangeDisplayTask(this);
-                changeDisplayTask.execute(editHost.getText().toString(), editPort.getText().toString(), editMessage.getText().toString());
+                changeDisplayTask.execute(Uid, Host, Port);
             }
             if (id == R.id.pathButton) {
                 TogglePathTask togglePathTask = new TogglePathTask(this);
-                togglePathTask.execute(editHost.getText().toString(), editPort.getText().toString(), editMessage.getText().toString());
+                togglePathTask.execute(Uid, Host, Port);
             }
         }
         else {
-
-            StringBuffer isMissing = new StringBuffer();
-            if (editHost.getText().toString().length() == 0) isMissing.append("host/");
-            if (editPort.getText().toString().length() == 0) isMissing.append("port/");
-            if (editMessage.getText().toString().length() == 0) isMissing.append("message/");
-            isMissing.deleteCharAt(isMissing.length() - 1);
-            isMissing.append(" missing");
-
-            Toast.makeText(this, "Cannot send to server:\n" + isMissing, Toast.LENGTH_LONG).show();
-
+            Toast.makeText(this, "You need to set up an account in the settings menu before you can use this", Toast.LENGTH_LONG).show();
         }
     }
 
