@@ -4,15 +4,21 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationListener;
+
+import java.security.Timestamp;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by tnash219 on 10/20/2014.
@@ -36,6 +42,8 @@ public class MockGPSService extends IntentService implements
     boolean tracking;
     SharedPreferences sharedPreferences;
 
+    ArrayList<String> current_path = new ArrayList<String>();
+
     @Override
     protected void onHandleIntent(Intent workIntent) {
         String dataString = workIntent.getDataString();
@@ -54,22 +62,37 @@ public class MockGPSService extends IntentService implements
 
         mLocationClient = new LocationClient(this,this,this);
 
-        tracking = sharedPreferences.getBoolean("pref_key_tracker_disabled_setting", false);
+        tracking = sharedPreferences.getBoolean("pref_key_tracker_disabled_setting", true);
+
+        mLocationClient.connect();
     }
 
     @Override
-    public void onProviderEnabled(String str) {}
-    @Override
-    public void onProviderDisabled(String str) {}
-    @Override
-    public void onStatusChanged(String str, int i, Bundle bundle) {}
-    @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {}
     @Override
-    public void onConnected(Bundle bundle) {}
+    public void onConnected(Bundle bundle) {
+        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+
+        if(tracking) {
+            mLocationClient.requestLocationUpdates(mLocationRequest,this);
+        }
+    }
     @Override
-    public void onDisconnected() {}
+    public void onDisconnected() {
+        Toast.makeText(this, "Disconnected. Please re-connect.", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
-    public void onLocationChanged(Location location) {}
+    public void onLocationChanged(Location location) {
+        Calendar calendar = Calendar.getInstance();
+        long ts = calendar.getTimeInMillis();
+
+        String new_loc = Double.toString(location.getLatitude()) + "\n" +
+                         Double.toString(location.getLongitude()) + "\n" +
+                         Long.toString(ts) + "\n";
+
+        current_path.add(new_loc);
+        Toast.makeText(this, new_loc, Toast.LENGTH_SHORT).show();
+    }
 
 }

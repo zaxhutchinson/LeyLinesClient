@@ -1,5 +1,9 @@
 package mycompany.myapplication;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.IntentService;
 import android.content.Intent;
 import android.location.LocationListener;
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +20,8 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 
 public class MyActivity extends ActionBarActivity implements
         View.OnClickListener {
+
+    Intent gpsIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +44,8 @@ public class MyActivity extends ActionBarActivity implements
         Button pathButton = (Button)findViewById(R.id.pathButton);
         pathButton.setOnClickListener(this);
 
-        //Intent gpsIntent = new Intent(this, MockGPSService.class);
-        //gpsIntent.set
+        gpsIntent = new Intent(this, MockGPSService.class);
+        startService(gpsIntent);
     }
 
     @Override
@@ -95,6 +101,7 @@ public class MyActivity extends ActionBarActivity implements
 
             }
             if (id == R.id.trackerButton) {
+                //gpsIntent.
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
                 toggleTrackerTask.execute(editHost.getText().toString(), editPort.getText().toString(), editMessage.getText().toString());
             }
@@ -120,4 +127,6 @@ public class MyActivity extends ActionBarActivity implements
 
         }
     }
+
+
 }
