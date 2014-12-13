@@ -44,8 +44,8 @@ public class MyActivity extends ActionBarActivity implements
         Button pathButton = (Button)findViewById(R.id.pathButton);
         pathButton.setOnClickListener(this);
 
-        gpsIntent = new Intent(this, MockGPSService.class);
-        startService(gpsIntent);
+        //gpsIntent = new Intent(this, MockGPSService.class);
+        //startService(gpsIntent);
     }
 
     @Override
