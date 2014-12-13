@@ -37,7 +37,7 @@
         <string name="contact2_config">Contact 2</string>
         <string name="contact3_config">Contact 3</string>
             <string name="contact_type_setting">Contact Type</string>
-            <string name="contact_type_default">leylines</string>
+            <string name="contact_type_default">email</string>
             <string name="contact_info_setting">Contact Info</string>
             <string name="contact_alert_setting">Defcon Alerts</string>
             <string name="contact_alert_default">3</string>
@@ -222,14 +222,14 @@
         <item>5</item>
     </string-array>
     <string-array name="contact_type_entries">
-        <item>Ley Lines</item>
+        <!--<item>Ley Lines</item>-->
         <item>Email</item>
-        <item>Mobile</item>
+        <!--<item>Mobile</item>-->
     </string-array>
     <string-array name="contact_type_entry_values">
-        <item>leylines</item>
+        <!--<item>leylines</item>-->
         <item>email</item>
-        <item>mobile</item>
+        <!--<item>mobile</item>-->
     </string-array>
 
     <!-- slider preference summaries -->
