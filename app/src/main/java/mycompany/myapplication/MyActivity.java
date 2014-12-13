@@ -38,11 +38,15 @@ public class MyActivity extends ActionBarActivity implements
         Button trackerButton = (Button)findViewById(R.id.trackerButton);
         trackerButton.setOnClickListener(this);
 
+        //not implemented yet
         Button displayButton = (Button)findViewById(R.id.displayButton);
         displayButton.setOnClickListener(this);
+        displayButton.setEnabled(false);
 
+        //not implemented yet
         Button pathButton = (Button)findViewById(R.id.pathButton);
         pathButton.setOnClickListener(this);
+        pathButton.setEnabled(false);
 
         //gpsIntent = new Intent(this, MockGPSService.class);
         //startService(gpsIntent);
