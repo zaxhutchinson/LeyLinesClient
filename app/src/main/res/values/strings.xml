@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ley Lines</string>
+    <string name="settings_name">Settings</string>
+    <string name="advanced_settings_name">Advanced Settings</string>
+    <string name="ley_lines">Ley Lines instead of Hello World!</string>
+
+    <!-- menu items -->
+    <string name="action_settings">Settings</string>
+    <string name="action_exit">Exit</string>
+
+    <!-- dialog texts -->
+    <string name="send_to_server_dialog">Send message to server?</string>
+    <string name="exit_application_dialog">Suspend Ley Lines?</string>
+
+    <!-- responses -->
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+
+    <!-- button text -->
+    <string name="btn_send">Send</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_tracker">Tracker</string>
+    <string name="btn_display">Display</string>
+    <string name="btn_path">Path</string>
+
+    <!-- text above input fields -->
+    <string name="input_host">Host</string>
+    <string name="input_port">Port</string>
+    <string name="input_message">Message</string>
+    
+    <!-- advanced settings menu -->
+    <string name="category_contacts">Contacts</string>
+        <string name="contact1_config">Contact 1</string>
+        <string name="contact2_config">Contact 2</string>
+        <string name="contact3_config">Contact 3</string>
+            <string name="contact_type_setting">Contact Type</string>
+            <string name="contact_type_default">leylines</string>
+            <string name="contact_info_setting">Contact Info</string>
+            <string name="contact_alert_setting">Defcon Alerts</string>
+            <string name="contact_alert_default">3</string>
+        <string name="contact_self_setting">Self Notify</string>
+        <string name="contact_self_summary">When your activity generates an alert a notification will be sent to you</string>
+
+    <string name="category_frequency">Background Activity</string>
+        <string name="alert_frequency">Alerts</string>
+        <string name="alert_summary">How often alerts can be sent</string>
+        <string name="alert_default">10800</string>
+
+        <string name="gps_collect_frequency">GPS Collecting</string>
+        <string name="gps_collect_summary">GPS coordinate polling frequency</string>
+        <string name="gps_collect_default">300</string>
+
+        <string name="gps_send_frequency">GPS Sending</string>
+        <string name="gps_send_summary">Rate GPS coordinates sync up</string>
+        <string name="gps_send_default">900</string>
+
+    <string name="category_config">Alert Configuration</string>
+        <string name="distance_config">Distance</string>
+            <string name="distance_settings">Distance Alerts</string>
+            <string name="distance_summary">Allow sending alerts whenever a certain distance from your usual area is breached</string>
+            <string name="distance_importance">Distance Importance</string>
+            <string name="distance_deviation_setting">Path deviation radius</string>
+            <string name="distance_deviation_default">100</string>
+            <string name="distance_deviation_field">Alert message</string>
+            <string name="distance_deviation_alert">has strayed far outside their normal path.</string>
+
+        <string name="time_config">Time</string>
+            <string name="time_settings">Time Alerts</string>
+            <string name="time_summary">Allow sending alerts whenever you spend a certain amount of time out of your usual area</string>
+            <string name="time_importance">Time Importance</string>
+            <string name="time_deviation_setting">Duration off path</string>
+            <string name="time_deviation_default">10800</string>
+            <string name="time_deviation_field">Alert message</string>
+            <string name="time_deviation_alert">has been outside their normal path unusually long.</string>
+
+        <string name="location_config">Location</string>
+            <string name="location_settings">Expected Location</string>
+            <string name="location_summary">Allow sending alerts whenever you aren\'t where you\'re expected to be</string>
+            <string name="location_importance">Location Importance</string>
+            <string name="location_distance_setting">Radius</string>
+            <string name="location_distance_default">1000</string>
+            <string name="location_time_setting">Time frame</string>
+            <string name="location_time_default">100</string>
+            <string name="location_settings_field">Alert message</string>
+            <string name="location_settings_alert">is not expected to be here.</string>
+
+        <string name="battery_config">Battery</string>
+            <string name="battery_settings">Battery Alerts</string>
+            <string name="battery_summary">Allows sending of alerts when the device battery goes below a certain level</string>
+            <string name="battery_importance">Battery Importance</string>
+            <string name="battery_level_setting">Low battery level</string>
+            <string name="battery_level_default">20</string>
+            <string name="battery_level_field">Alert message</string>
+            <string name="battery_level_alert">has a low battery.</string>
+
+        <string name="tracker_config">Tracker</string>
+            <string name="tracker_settings">Tracker Alerts</string>
+            <string name="tracker_summary">Allows sending alerts whenever certain tracker activity has not been maintained</string>
+            <string name="tracker_disabled_setting">Tracker disabled</string>
+            <string name="tracker_disabled_summary">Alert gets triggered if tracker is off too long</string>
+                <string name="tracker_disabled_duration_setting">Time duration disabled</string>
+                <string name="tracker_disabled_duration_default">3600</string>
+            <string name="tracker_inactive_setting">Tracker inactive</string>
+            <string name="tracker_inactive_summary">Alert gets triggered if you remain stationary too long</string>
+                <string name="tracker_inactive_duration_setting">Time duration inactive</string>
+                <string name="tracker_inactive_duration_default">604800</string>
+            <string name="tracker_response_setting">Tracker not responding</string>
+            <string name="tracker_response_summary">Alert gets triggered if the server cannot communicate with your device</string>
+                <string name="tracker_response_misses_setting">Missed response limit</string>
+                <string name="tracker_response_misses_default">3</string>
+            <string name="tracker_settings_field">Alert message</string>
+            <string name="tracker_settings_alert">has not been moving or could not be monitored.</string>
+
+
+
+
+    <string name="category_importance">Alert Importance</string>
+    <string-array name="importance_summaries">
+        <!-- You can define as many summaries as you'd like -->
+        <!-- The active summary will reflect the preference's current value -->
+        <item>Lower</item>
+        <item>Low</item>
+        <item>Moderate</item>
+        <item>High</item>
+        <item>Higher</item>
+    </string-array>
+    <item name="importance_default" format="float" type="string">0.5</item>
+    <string name="importance_message">Choose your destiny</string>
+
+    <string name="category_path">Path</string>
+    <string name="time_off_path">Time off Path</string>
+    <string name="distance_from_path">Distance from Path</string>
+
+    <string name="category_gps">GPS</string>
+    <string name="collect_gps">Collect Frequency</string>
+    <string name="send_gps">Send Frequency</string>
+
+    <string name="category_alert">Alerts</string>
+    <string name="defcon_alert">Defcon Threshold</string>
+
+    <string name="defcon_default">3</string>
+    <string name="defcon_message">Alert sending threshold</string>
+    <string name="custom_alert">Customize Alerts</string>
+    <string name="destination_name">Destination</string>
+
+    <!-- list preferences -->
+    <string-array name="frequency_entries">
+        <item>Every minute</item>
+        <item>Every 5 minutes</item>
+        <item>Every 15 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Hourly</item>
+        <item>Every 3 hours</item>
+        <item>Every 6 hours</item>
+        <item>Every 12 hours</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
+    <string-array name="timeframe_entries">
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+        <item>1 week</item>
+    </string-array>
+    <string-array name="time_entry_values">
+        <!-- seconds -->
+        <item>60</item>
+        <item>300</item>
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>10800</item>
+        <item>21600</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>604800</item>
+    </string-array>
+
+    <string-array name="distance_entries">
+        <item>10 meters</item>
+        <item>100 meters</item>
+        <item>200 meters</item>
+        <item>500 meters</item>
+        <item>1 kilometer</item>
+        <item>5 kilometers</item>
+        <item>10 kilometers</item>
+        <item>20 kilometers</item>
+        <item>50 kilometers</item>
+        <item>100 kilometers</item>
+        <item>200 kilometers</item>
+        <item>500 kilometers</item>
+    </string-array>
+    <string-array name="distance_entry_values">
+        <!-- meters -->
+        <item>10</item>
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>20000</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>200000</item>
+        <item>500000</item>
+    </string-array>
+    <string-array name="one_to_five_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="contact_type_entries">
+        <item>Ley Lines</item>
+        <item>Email</item>
+        <item>Mobile</item>
+    </string-array>
+    <string-array name="contact_type_entry_values">
+        <item>leylines</item>
+        <item>email</item>
+        <item>mobile</item>
+    </string-array>
+
+    <!-- slider preference summaries -->
+    <string-array name="defcon_summaries">
+        <item>Alerts will be sent of Defcon 1 or higher</item>
+        <item>Alerts will be sent of Defcon 2 or higher</item>
+        <item>Alerts will be sent of Defcon 3 or higher</item>
+        <item>Alerts will be sent of Defcon 4 or higher</item>
+        <item>Alerts will be sent of Defcon 5 only</item>
+    </string-array>
+
+    <string-array name="battery_level_entries">
+        <item>10% remaining</item>
+        <item>20% remaining</item>
+        <item>30% remaining</item>
+        <item>40% remaining</item>
+        <item>50% remaining</item>
+    </string-array>
+    <string-array name="battery_level_entry_values">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
+
+    <!-- spinner choices -->
+    <string-array name="lifestyle_choices">
+         <item>Adventurous</item>
+        <item>Regressive</item>
+        <item>Child</item>
+        <item>Senior</item>
+    </string-array>
+    <string-array name="lifestyle_summaries">
+        <item>Likely to wander off to new places and occasionally stays out longer.</item>
+        <item>Prefers to stick to a routine when it comes to travelling.</item>
+        <item>Limited flexibility required for activities and commuting. Suitable for children.</item>
+        <item>Extra attention provided in terms of precision. Suitable for elders.</item>
+    </string-array>
+    <string-array name="sensitivity_choices">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+    <string-array name="sensitivity_summaries">
+        <item>Choice to send an alert is appropriately lenient</item>
+        <item>Moderate consideration of behavior for sending alerts</item>
+        <item>Tight degree for alert triggering decision</item>
+    </string-array>
+
+</resources>

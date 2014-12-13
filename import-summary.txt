@@ -1,0 +1,58 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitattributes
+* .gitignore
+* LICENSE.txt
+* README.md
+* example\
+* example\.classpath
+* example\.gitignore
+* example\.project
+* example\AndroidManifest.xml
+* example\proguard-project.txt
+* example\project.properties
+* example\res\
+* example\res\values\
+* example\res\values\strings.xml
+* example\res\xml\
+* example\res\xml\preferences.xml
+* example\src\
+* example\src\net\
+* example\src\net\jayschwa\
+* example\src\net\jayschwa\android\
+* example\src\net\jayschwa\android\preference\
+* example\src\net\jayschwa\android\preference\SliderPreferenceExample\
+* example\src\net\jayschwa\android\preference\SliderPreferenceExample\ExampleActivity.java
+* proguard-project.txt
+* screenshot.png
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => sliderPreference\src\main\AndroidManifest.xml
+* res\ => sliderPreference\src\main\res\
+* src\ => sliderPreference\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

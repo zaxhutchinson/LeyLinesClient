@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/category_contacts"
+        android:key="pref_key_contacts_settings">
+        <PreferenceScreen
+            android:title="@string/contact1_config"
+            android:key="pref_key_contact1_config">
+            <ListPreference
+                android:title="@string/contact_type_setting"
+                android:dialogTitle="@string/contact_type_setting"
+                android:key="pref_key_contact1_type_setting"
+                android:defaultValue="@string/contact_type_default"
+                android:entries="@array/contact_type_entries"
+                android:entryValues="@array/contact_type_entry_values" />
+            <EditTextPreference
+                android:title="@string/contact_info_setting"
+                android:key="pref_key_contact1_info_setting"
+                android:defaultValue="" />
+            <ListPreference
+                android:title="@string/contact_alert_setting"
+                android:dialogTitle="@string/contact_alert_setting"
+                android:key="pref_key_contact1_alert_setting"
+                android:defaultValue="@string/contact_alert_default"
+                android:entries="@array/one_to_five_entry_values"
+                android:entryValues="@array/one_to_five_entry_values" />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="@string/contact2_config"
+            android:key="pref_key_contact2_config">
+            <ListPreference
+                android:title="@string/contact_type_setting"
+                android:dialogTitle="@string/contact_type_setting"
+                android:key="pref_key_contact2_type_setting"
+                android:defaultValue="@string/contact_type_default"
+                android:entries="@array/contact_type_entries"
+                android:entryValues="@array/contact_type_entry_values" />
+            <EditTextPreference
+                android:title="@string/contact_info_setting"
+                android:key="pref_key_contact2_info_setting"
+                android:defaultValue="" />
+            <ListPreference
+                android:title="@string/contact_alert_setting"
+                android:dialogTitle="@string/contact_alert_setting"
+                android:key="pref_key_contact2_alert_setting"
+                android:defaultValue="@string/contact_alert_default"
+                android:entries="@array/one_to_five_entry_values"
+                android:entryValues="@array/one_to_five_entry_values" />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="@string/contact3_config"
+            android:key="pref_key_contact3_config">
+            <ListPreference
+                android:title="@string/contact_type_setting"
+                android:dialogTitle="@string/contact_type_setting"
+                android:key="pref_key_contact3_type_setting"
+                android:defaultValue="@string/contact_type_default"
+                android:entries="@array/contact_type_entries"
+                android:entryValues="@array/contact_type_entry_values" />
+            <EditTextPreference
+                android:title="@string/contact_info_setting"
+                android:key="pref_key_contact3_info_setting"
+                android:defaultValue="" />
+            <ListPreference
+                android:title="@string/contact_alert_setting"
+                android:dialogTitle="@string/contact_alert_setting"
+                android:key="pref_key_contact3_alert_setting"
+                android:defaultValue="@string/contact_alert_default"
+                android:entries="@array/one_to_five_entry_values"
+                android:entryValues="@array/one_to_five_entry_values" />
+        </PreferenceScreen>
+        <CheckBoxPreference
+            android:title="@string/contact_self_setting"
+            android:key="pref_key_contact_self_setting"
+            android:summary="@string/contact_self_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/category_frequency"
+        android:key="pref_key_frequency_settings">
+        <ListPreference
+            android:dependency=""
+            android:title="@string/alert_frequency"
+            android:dialogTitle="@string/alert_frequency"
+            android:summary="@string/alert_summary"
+            android:key="pref_key_alert_frequency"
+            android:defaultValue="@string/alert_default"
+            android:entries="@array/frequency_entries"
+            android:entryValues="@array/time_entry_values" />
+        <ListPreference
+            android:dependency=""
+            android:title="@string/gps_collect_frequency"
+            android:dialogTitle="@string/gps_collect_frequency"
+            android:summary="@string/gps_collect_summary"
+            android:key="pref_key_gps_collect_frequency"
+            android:defaultValue="@string/gps_collect_default"
+            android:entries="@array/frequency_entries"
+            android:entryValues="@array/time_entry_values" />
+        <ListPreference
+            android:dependency=""
+            android:title="@string/gps_send_frequency"
+            android:dialogTitle="@string/gps_send_frequency"
+            android:summary="@string/gps_send_summary"
+            android:key="pref_key_gps_send_frequency"
+            android:defaultValue="@string/gps_send_default"
+            android:entries="@array/frequency_entries"
+            android:entryValues="@array/time_entry_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/category_config"
+        android:key="pref_key_config_settings">
+        <PreferenceScreen
+            android:title="@string/distance_config"
+            android:key="pref_key_distance_config">
+            <CheckBoxPreference
+                android:title="@string/distance_settings"
+                android:key="pref_key_distance_settings"
+                android:summary="@string/distance_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_distance_settings"
+                android:title="@string/distance_importance"
+                android:key="pref_key_distance_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+            <ListPreference
+                android:dependency="pref_key_distance_settings"
+                android:title="@string/distance_deviation_setting"
+                android:dialogTitle="@string/distance_deviation_setting"
+                android:key="pref_key_distance_deviation_setting"
+                android:defaultValue="@string/distance_deviation_default"
+                android:entries="@array/distance_entries"
+                android:entryValues="@array/distance_entry_values" />
+            <EditTextPreference
+                android:dependency="pref_key_distance_settings"
+                android:title="@string/distance_deviation_field"
+                android:key="pref_key_distance_deviation_alert"
+                android:defaultValue="@string/distance_deviation_alert" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/time_config"
+            android:key="pref_key_time_config">
+            <CheckBoxPreference
+                android:title="@string/time_settings"
+                android:key="pref_key_time_settings"
+                android:summary="@string/time_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_time_settings"
+                android:title="@string/time_importance"
+               android:key="pref_key_time_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+            <ListPreference
+                android:dependency="pref_key_time_settings"
+                android:title="@string/time_deviation_setting"
+                android:dialogTitle="@string/time_deviation_setting"
+                android:key="pref_key_time_deviation_setting"
+                android:defaultValue="@string/time_deviation_default"
+                android:entries="@array/timeframe_entries"
+                android:entryValues="@array/time_entry_values" />
+            <EditTextPreference
+                android:dependency="pref_key_time_settings"
+                android:title="@string/time_deviation_field"
+                android:key="pref_key_time_deviation_alert"
+                android:defaultValue="@string/time_deviation_alert" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/location_config"
+            android:key="pref_key_location_config">
+            <CheckBoxPreference
+                android:title="@string/location_settings"
+                android:key="pref_key_location_settings"
+                android:summary="@string/location_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_location_settings"
+                android:title="@string/location_importance"
+                android:key="pref_key_location_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+            <ListPreference
+                android:dependency="pref_key_location_settings"
+                android:title="@string/location_distance_setting"
+                android:dialogTitle="@string/location_distance_setting"
+                android:key="pref_key_location_distance_setting"
+                android:defaultValue="@string/location_distance_default"
+                android:entries="@array/distance_entries"
+                android:entryValues="@array/distance_entry_values" />
+            <ListPreference
+                android:dependency="pref_key_location_settings"
+                android:title="@string/location_time_setting"
+                android:dialogTitle="@string/location_time_setting"
+                android:key="pref_key_location_time_setting"
+                android:defaultValue="@string/location_time_default"
+                android:entries="@array/timeframe_entries"
+                android:entryValues="@array/time_entry_values" />
+            <EditTextPreference
+                android:dependency="pref_key_location_settings"
+                android:title="@string/location_settings_field"
+                android:key="pref_key_location_settings_alert"
+                android:defaultValue="@string/location_settings_alert" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/battery_config"
+            android:key="pref_key_battery_config">
+            <CheckBoxPreference
+                android:title="@string/battery_settings"
+                android:key="pref_key_battery_settings"
+                android:summary="@string/battery_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_battery_settings"
+                android:title="@string/battery_importance"
+                android:key="pref_key_battery_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+            <ListPreference
+                android:dependency="pref_key_battery_settings"
+                android:title="@string/battery_level_setting"
+                android:dialogTitle="@string/battery_level_setting"
+
+                android:key="pref_key_battery_level_settin"
+
+                android:defaultValue="@string/battery_level_default"
+                android:entries="@array/battery_level_entries"
+                android:entryValues="@array/battery_level_entry_values" />
+            <!-- some bug in the key name "pref_key_battery_level_setting" I can't figure out -->
+            <EditTextPreference
+                android:dependency="pref_key_battery_settings"
+                android:title="@string/battery_level_field"
+                android:key="pref_key_battery_level_alert"
+                android:defaultValue="@string/battery_level_alert" />
+        </PreferenceScreen>
+
+        <!-- prepare to be lost -->
+        <PreferenceScreen
+            android:title="@string/tracker_config"
+            android:key="pref_key_tracker_config">
+            <CheckBoxPreference
+                android:title="@string/tracker_settings"
+                android:key="pref_key_tracker_settings"
+                android:summary="@string/tracker_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_distance_settings"
+                android:title="@string/distance_importance"
+                android:key="pref_key_distance_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+
+            <CheckBoxPreference
+                android:dependency="pref_key_tracker_settings"
+                android:title="@string/tracker_disabled_setting"
+                android:key="pref_key_tracker_disabled_setting"
+                android:summary="@string/tracker_disabled_summary"
+                android:defaultValue="false" />
+            <ListPreference
+                android:dependency="pref_key_tracker_disabled_setting"
+                android:title="@string/tracker_disabled_duration_setting"
+                android:dialogTitle="@string/tracker_disabled_duration_setting"
+                android:key="pref_key_tracker_disabled_duration_setting"
+                android:defaultValue="@string/tracker_disabled_duration_default"
+                android:entries="@array/timeframe_entries"
+                android:entryValues="@array/time_entry_values" />
+            <CheckBoxPreference
+                android:dependency="pref_key_tracker_settings"
+                android:title="@string/tracker_inactive_setting"
+                android:key="pref_key_tracker_inactive_setting"
+                android:summary="@string/tracker_inactive_summary"
+                android:defaultValue="false" />
+            <ListPreference
+                android:dependency="pref_key_tracker_inactive_setting"
+                android:title="@string/tracker_inactive_duration_setting"
+                android:dialogTitle="@string/tracker_inactive_duration_setting"
+                android:key="pref_key_tracker_inactive_duration_setting"
+                android:defaultValue="@string/tracker_inactive_duration_default"
+                android:entries="@array/timeframe_entries"
+                android:entryValues="@array/time_entry_values" />
+            <CheckBoxPreference
+                android:dependency="pref_key_tracker_settings"
+                android:title="@string/tracker_response_setting"
+                android:key="pref_key_tracker_response_setting"
+                android:summary="@string/tracker_response_summary"
+                android:defaultValue="false" />
+            <ListPreference
+                android:dependency="pref_key_tracker_response_setting"
+                android:title="@string/tracker_response_misses_setting"
+                android:dialogTitle="@string/tracker_response_misses_setting"
+                android:key="pref_key_tracker_response_misses_setting"
+                android:defaultValue="@string/tracker_response_misses_default"
+                android:entries="@array/one_to_five_entry_values"
+                android:entryValues="@array/one_to_five_entry_values" />
+            <EditTextPreference
+                android:dependency="pref_key_tracker_settings"
+                android:title="@string/tracker_settings_field"
+                android:key="pref_key_tracker_settings_alert"
+                android:defaultValue="@string/tracker_settings_alert" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>
