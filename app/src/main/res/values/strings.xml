@@ -83,7 +83,7 @@
             <string name="location_distance_setting">Radius</string>
             <string name="location_distance_default">1000</string>
             <string name="location_time_setting">Time frame</string>
-            <string name="location_time_default">100</string>
+            <string name="location_time_default">3600</string>
             <string name="location_settings_field">Alert message</string>
             <string name="location_settings_alert">is not expected to be here.</string>
 
