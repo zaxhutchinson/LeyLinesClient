@@ -426,6 +426,11 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
             container = "Minimum alert level: Defcon " + sharedPreferences.getString(key, "");
             preference.setSummary(container);
         }
+
+        //Self Notify
+        else if (key.equals("pref_key_contact_self_setting")) {
+            //static summary
+        }
         /*Contacts end*/
 
         /*Background Activity start*/
