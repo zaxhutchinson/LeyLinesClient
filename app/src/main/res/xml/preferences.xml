@@ -23,8 +23,8 @@
                 android:dialogTitle="@string/contact_alert_setting"
                 android:key="pref_key_contact1_alert_setting"
                 android:defaultValue="@string/contact_alert_default"
-                android:entries="@array/one_to_five_entry_values"
-                android:entryValues="@array/one_to_five_entry_values" />
+                android:entries="@array/one_to_ten_entry_values"
+                android:entryValues="@array/one_to_ten_entry_values" />
         </PreferenceScreen>
         <PreferenceScreen
             android:title="@string/contact2_config"
@@ -45,8 +45,8 @@
                 android:dialogTitle="@string/contact_alert_setting"
                 android:key="pref_key_contact2_alert_setting"
                 android:defaultValue="@string/contact_alert_default"
-                android:entries="@array/one_to_five_entry_values"
-                android:entryValues="@array/one_to_five_entry_values" />
+                android:entries="@array/one_to_ten_entry_values"
+                android:entryValues="@array/one_to_ten_entry_values" />
         </PreferenceScreen>
         <PreferenceScreen
             android:title="@string/contact3_config"
@@ -67,8 +67,8 @@
                 android:dialogTitle="@string/contact_alert_setting"
                 android:key="pref_key_contact3_alert_setting"
                 android:defaultValue="@string/contact_alert_default"
-                android:entries="@array/one_to_five_entry_values"
-                android:entryValues="@array/one_to_five_entry_values" />
+                android:entries="@array/one_to_ten_entry_values"
+                android:entryValues="@array/one_to_ten_entry_values" />
         </PreferenceScreen>
         <CheckBoxPreference
             android:title="@string/contact_self_setting"

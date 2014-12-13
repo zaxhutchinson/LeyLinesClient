@@ -221,6 +221,18 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string-array name="one_to_ten_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
     <string-array name="contact_type_entries">
         <!--<item>Ley Lines</item>-->
         <item>Email</item>
@@ -238,7 +250,7 @@
         <item>Alerts will be sent of Defcon 2 or higher</item>
         <item>Alerts will be sent of Defcon 3 or higher</item>
         <item>Alerts will be sent of Defcon 4 or higher</item>
-        <item>Alerts will be sent of Defcon 5 only</item>
+        <item>Alerts will be sent of Defcon 5 or higher</item>
     </string-array>
 
     <string-array name="battery_level_entries">
