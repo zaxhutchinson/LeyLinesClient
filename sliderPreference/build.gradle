@@ -5,13 +5,12 @@ android {
     buildToolsVersion "19.1.0"
 
     defaultConfig {
-        applicationId "net.jayschwa.android.preference"
         targetSdkVersion 17
     }
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
