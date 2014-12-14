@@ -58,14 +58,23 @@
         <string name="gps_send_default">900</string>
 
     <string name="category_config">Alert Configuration</string>
-        <string name="distance_config">Distance</string>
-            <string name="distance_settings">Distance Alerts</string>
-            <string name="distance_summary">Allow sending alerts whenever a certain distance from your usual area is breached</string>
-            <string name="distance_importance">Distance Importance</string>
-            <string name="distance_deviation_setting">Path deviation radius</string>
-            <string name="distance_deviation_default">100</string>
-            <string name="distance_deviation_field">Alert message</string>
-            <string name="distance_deviation_alert">has strayed far outside their normal path.</string>
+        <string name="distance_relative_config">Relative Distance</string>
+            <string name="distance_relative_settings">Relative Distance Alerts</string>
+            <string name="distance_relative_summary">Allow sending alerts whenever a certain distance from your usual area is breached</string>
+            <string name="distance_relative_importance">Relative Distance Importance</string>
+            <string name="distance_relative_deviation_setting">Path deviation radius</string>
+            <string name="distance_relative_deviation_default">100</string>
+            <string name="distance_relative_deviation_field">Alert message</string>
+            <string name="distance_relative_deviation_alert">has strayed far outside their normal path.</string>
+
+        <string name="distance_total_config">Total Distance</string>
+            <string name="distance_total_settings">Total Distance Alerts</string>
+            <string name="distance_total_summary">Allow sending alerts whenever an unknown path reaches a certain length</string>
+            <string name="distance_total_importance">Total Distance Importance</string>
+            <string name="distance_total_deviation_setting">Path deviation length</string>
+            <string name="distance_total_deviation_default">100</string>
+            <string name="distance_total_deviation_field">Alert Message</string>
+            <string name="distance_total_deviation_alert">has wandered too far down an unknown path.</string>
 
         <string name="time_config">Time</string>
             <string name="time_settings">Time Alerts</string>

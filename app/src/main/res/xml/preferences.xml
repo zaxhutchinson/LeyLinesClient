@@ -112,33 +112,63 @@
         android:title="@string/category_config"
         android:key="pref_key_config_settings">
         <PreferenceScreen
-            android:title="@string/distance_config"
+            android:title="@string/distance_relative_config"
             android:key="pref_key_distance_config">
             <CheckBoxPreference
-                android:title="@string/distance_settings"
+                android:title="@string/distance_relative_settings"
                 android:key="pref_key_distance_settings"
-                android:summary="@string/distance_summary"
+                android:summary="@string/distance_relative_summary"
                 android:defaultValue="false" />
             <net.jayschwa.android.preference.SliderPreference
                 android:dependency="pref_key_distance_settings"
-                android:title="@string/distance_importance"
+                android:title="@string/distance_relative_importance"
                 android:key="pref_key_distance_importance"
                 android:summary="@array/importance_summaries"
                 android:defaultValue="@string/importance_default"
                 android:dialogMessage="@string/importance_message" />
             <ListPreference
                 android:dependency="pref_key_distance_settings"
-                android:title="@string/distance_deviation_setting"
-                android:dialogTitle="@string/distance_deviation_setting"
+                android:title="@string/distance_relative_deviation_setting"
+                android:dialogTitle="@string/distance_relative_deviation_setting"
                 android:key="pref_key_distance_deviation_setting"
-                android:defaultValue="@string/distance_deviation_default"
+                android:defaultValue="@string/distance_relative_deviation_default"
                 android:entries="@array/distance_entries"
                 android:entryValues="@array/distance_entry_values" />
             <EditTextPreference
                 android:dependency="pref_key_distance_settings"
-                android:title="@string/distance_deviation_field"
+                android:title="@string/distance_relative_deviation_field"
                 android:key="pref_key_distance_deviation_alert"
-                android:defaultValue="@string/distance_deviation_alert" />
+                android:defaultValue="@string/distance_relative_deviation_alert" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/distance_total_config"
+            android:key="pref_key_distance_total_config">
+            <CheckBoxPreference
+                android:title="@string/distance_total_settings"
+                android:key="pref_key_distance_total_settings"
+                android:summary="@string/distance_total_summary"
+                android:defaultValue="false" />
+            <net.jayschwa.android.preference.SliderPreference
+                android:dependency="pref_key_distance_total_settings"
+                android:title="@string/distance_total_importance"
+                android:key="pref_key_distance_total_importance"
+                android:summary="@array/importance_summaries"
+                android:defaultValue="@string/importance_default"
+                android:dialogMessage="@string/importance_message" />
+            <ListPreference
+                android:dependency="pref_key_distance_total_settings"
+                android:title="@string/distance_total_deviation_setting"
+                android:dialogTitle="@string/distance_total_deviation_setting"
+                android:key="pref_key_distance_deviation_total_setting"
+                android:defaultValue="@string/distance_total_deviation_default"
+                android:entries="@array/distance_entries"
+                android:entryValues="@array/distance_entry_values" />
+            <EditTextPreference
+                android:dependency="pref_key_distance_total_settings"
+                android:title="@string/distance_total_deviation_field"
+                android:key="pref_key_distance_deviation_total_alert"
+                android:defaultValue="@string/distance_total_deviation_alert" />
         </PreferenceScreen>
 
         <PreferenceScreen
@@ -253,7 +283,7 @@
                 android:defaultValue="false" />
             <net.jayschwa.android.preference.SliderPreference
                 android:dependency="pref_key_distance_settings"
-                android:title="@string/distance_importance"
+                android:title="@string/distance_relative_importance"
                 android:key="pref_key_distance_importance"
                 android:summary="@array/importance_summaries"
                 android:defaultValue="@string/importance_default"
