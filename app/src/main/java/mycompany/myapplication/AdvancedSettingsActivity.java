@@ -169,7 +169,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         /*Background Activity end*/
 
         /*Alert Configuration start*/
-        //Distance
+        //Distance Overall
         Boolean boolContainer = sharedPreferences.getBoolean("pref_key_distance_settings",false);
         if (boolContainer) {
             Preference preference = findPreference("pref_key_distance_config");
@@ -198,6 +198,39 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         container = sharedPreferences.getString("pref_key_distance_deviation_alert","");
         if (container.length() > 0) {
             Preference preference = findPreference("pref_key_distance_deviation_alert");
+            preference.setSummary(container);
+        }
+
+        /*Alert Configuration start*/
+        // Distance Relative to previous paths
+        boolContainer = sharedPreferences.getBoolean("pref_key_distance_total_settings",false);
+        if(boolContainer) {
+            Preference preference = findPreference("pref_key_distance_total_config");
+            container = "Alerts currently enabled";
+            preference.setSummary(container);
+        }
+        else {
+            Preference preference = findPreference("pref_key_distance_total_config");
+            container = "Alerts currently disabled";
+            preference.setSummary(container);
+        }
+        floatContainer = sharedPreferences.getFloat("pref_key_distance_total_importance",0);
+
+        if(floatContainer != 0) {
+            //placeholder
+        }
+        container = sharedPreferences.getString("pref_key_distance_deviation_total_setting","");
+        if(container.length() > 0) {
+            Preference preference = findPreference("pref_key_distance_deviation_total_setting");
+            ListPreference listPreference = (ListPreference)preference;
+            container = "A previously unknown path cannot be longer than "
+                    + listPreference.getEntry().toString().toLowerCase()
+                    + ".";
+            preference.setSummary(container);
+        }
+        container = sharedPreferences.getString("pref_key_distance_deviation_total_alert","");
+        if (container.length() > 0) {
+            Preference preference = findPreference("pref_key_distance_deviation_total_alert");
             preference.setSummary(container);
         }
 
