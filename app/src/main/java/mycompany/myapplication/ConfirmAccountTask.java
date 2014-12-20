@@ -48,13 +48,10 @@ public class ConfirmAccountTask extends AsyncTask<String, Void, String[]> {
             //prepare to receive message from server
             BufferedReader in = new BufferedReader(new InputStreamReader(socketIn.getInputStream()));
 
-            UidHostPort[4] = in.readLine();
+            UidHostPort[3] = in.readLine();
 
             //disconnect and close socket
             socketIn.close();
-
-
-            //TODO something to update status file
 
         }  catch (UnknownHostException e) {
             UidHostPort[1] = "Host \"" + UidHostPort[1] + ":" + UidHostPort[2] + "\" not reachable\n" + e;
@@ -72,7 +69,8 @@ public class ConfirmAccountTask extends AsyncTask<String, Void, String[]> {
 
     @Override
     protected void onPostExecute(String[] UidHostPort) {
-        if(UidHostPort[4].equals("OK")) {
+        //account created on server time to confirm on device
+        if(UidHostPort[3].equals("OK")) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("pref_key_UID",UidHostPort[0]);
@@ -85,7 +83,7 @@ public class ConfirmAccountTask extends AsyncTask<String, Void, String[]> {
         }
         else {
             //error message was sent instead
-            Toast.makeText(activity, String.format("Unable to create account. %s",UidHostPort[4]), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, String.format("Unable to create account. %s",UidHostPort[3]), Toast.LENGTH_LONG).show();
         }
     }
 }

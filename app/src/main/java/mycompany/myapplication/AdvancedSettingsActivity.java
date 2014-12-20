@@ -351,7 +351,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
             container = "Alerts currently disabled";
             preference.setSummary(container);
         }
-        floatContainer = sharedPreferences.getFloat("pref_key_tracker0_importance",0);
+        floatContainer = sharedPreferences.getFloat("pref_key_tracker_importance",0);
 
         if (floatContainer != 0) {
             //placeholder

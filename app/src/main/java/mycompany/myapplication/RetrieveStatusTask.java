@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,13 +42,14 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
     }
 
     @Override
-    protected String[] doInBackground(String... HostOutIn) {
+    protected String[] doInBackground(String... UidHostPort) {
+        /*
         try {
             //prep new socket
             Socket socketIn = new Socket();
 
             //connect to server
-            socketIn.connect(new InetSocketAddress(HostOutIn[0],Integer.parseInt(HostOutIn[2])),5000);
+            socketIn.connect(new InetSocketAddress(UidHostPort[0],Integer.parseInt(UidHostPort[2])),5000);
 
             //prepare to receive message from server
             BufferedReader in = new BufferedReader(new InputStreamReader(socketIn.getInputStream()));
@@ -63,17 +66,25 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
             //TODO something to update status file
 
         }  catch (UnknownHostException e) {
-            HostOutIn[1] = "Host \"" + HostOutIn[0] + ":" + HostOutIn[2] + "\" not reachable\n" + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] = "Host \"" + UidHostPort[0] + ":" + UidHostPort[2] + "\" not reachable\n" + e;
+            UidHostPort[0] = "ERROR";
         } catch (IOException e) {
-            HostOutIn[1] =  "Incoming I/O operation failed: " + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] =  "Incoming I/O operation failed: " + e;
+            UidHostPort[0] = "ERROR";
         } catch(IllegalArgumentException e) {
-            HostOutIn[1] = "Illegal argument: " + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] = "Illegal argument: " + e;
+            UidHostPort[0] = "ERROR";
         }
+        */
 
-        return HostOutIn;
+        //demonstration stuff
+        String invert;
+        if (UidHostPort[2].equals("T")) invert = tracker.getText().toString().equals("Enabled") ? "FALSE" : "TRUE";
+        else invert = tracker.getText().toString().equals("Enabled") ? "TRUE" : "FALSE";
+        UserStatus userStatus = new UserStatus(String.format("NONE %s NONE FALSE",invert));
+        publishProgress(userStatus);
+
+        return UidHostPort;
     }
 
     @Override
@@ -96,14 +107,17 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
     }
 
     @Override
-    protected void onPostExecute(String[] HostOutIn) {
-        if (HostOutIn[0].equals("ERROR")) {
-            Toast.makeText(activity, HostOutIn[1], Toast.LENGTH_LONG).show();
+    protected void onPostExecute(String[] UidHostPort) {
+        if (UidHostPort[0].equals("ERROR")) {
+            Toast.makeText(activity, UidHostPort[1], Toast.LENGTH_LONG).show();
         }
 
-        else if(HostOutIn[1].equals("REFRESH")) {
-            Toast.makeText(activity, "Status updated.", Toast.LENGTH_LONG).show();
-        }
+        //else if(UidHostPort[1].equals("REFRESH")) {
+          //  Toast.makeText(activity, "Status updated.", Toast.LENGTH_LONG).show();
+        //}
+
+        else Toast.makeText(activity, "Status updated.", Toast.LENGTH_LONG).show();
+
 
     }
 }

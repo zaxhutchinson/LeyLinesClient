@@ -29,25 +29,26 @@ public class RequestRefreshTask extends AsyncTask<String, Void, String[]> {
 
     //sends a message to a server indicating that it should respond with the status of the device
     @Override
-    protected String[] doInBackground(String... HostOutIn) {
+    protected String[] doInBackground(String... UidHostPort) {
+        /*
         try {
             //prep new socket
             Socket socketOut = new Socket();
 
             //connect to server
-            socketOut.connect(new InetSocketAddress(HostOutIn[0],Integer.parseInt(HostOutIn[1])),5000);
+            socketOut.connect(new InetSocketAddress(UidHostPort[1],Integer.parseInt(UidHostPort[2])),5000);
 
             //prepare to send message to server
             PrintWriter out = new PrintWriter(socketOut.getOutputStream());
 
-            /*
-            Date date = new Date();
-            DateFormat dateFormat = DateFormat.getDateTimeInstance();
-            out.println(date.getTime() + " " + dateFormat.format(date));
-            */
+
+            //Date date = new Date();
+            //DateFormat dateFormat = DateFormat.getDateTimeInstance();
+            //out.println(date.getTime() + " " + dateFormat.format(date));
+
 
             //sample command with unique device id that should work as an identifier
-            out.println("LONGHEXNUMBERHERE REFRESH " + HostOutIn[2]);
+            out.println("REFRESH " + UidHostPort[0]);
             out.flush();
             out.close();
 
@@ -55,22 +56,24 @@ public class RequestRefreshTask extends AsyncTask<String, Void, String[]> {
             socketOut.close();
 
             //temporary indicator for status refreshed toast
-            HostOutIn[1] = "REFRESH";
+            UidHostPort[1] = "REFRESH";
 
         } catch (UnknownHostException e) {
-            HostOutIn[1] = "Host \"" + HostOutIn[0] + ":" + HostOutIn[1] + "\" not reachable\n" + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] = "Host \"" + UidHostPort[1] + ":" + UidHostPort[2] + "\" not reachable\n" + e;
+            UidHostPort[0] = "ERROR";
         } catch (IOException e) {
-            HostOutIn[1] =  "Outgoing I/O operation failed: " + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] =  "Outgoing I/O operation failed: " + e;
+            UidHostPort[0] = "ERROR";
         } catch(IllegalArgumentException e) {
-            HostOutIn[1] = "Illegal argument: " + e;
-            HostOutIn[0] = "ERROR";
+            UidHostPort[1] = "Illegal argument: " + e;
+            UidHostPort[0] = "ERROR";
         }
+        */
 
+        UidHostPort[2] = "R";
 
         //returns the strings for use in RetrieveStatusTask
-        return HostOutIn;
+        return UidHostPort;
     }
 
     @Override

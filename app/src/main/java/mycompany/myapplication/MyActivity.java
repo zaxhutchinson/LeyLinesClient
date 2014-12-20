@@ -7,6 +7,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.LocationListener;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesClient;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.Map;
 
 
 public class MyActivity extends ActionBarActivity implements
@@ -103,20 +109,52 @@ public class MyActivity extends ActionBarActivity implements
         */
 
             if (id == R.id.refreshButton) {
-                RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
-                requestRefreshTask.execute(Uid, Host, Port);
+                //RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
+                //requestRefreshTask.execute(Uid, Host, Port);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
             }
             if (id == R.id.trackerButton) {
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
                 toggleTrackerTask.execute(Uid, Host, Port);
+
+                /*
+                File myPath = new File(Environment.getExternalStorageDirectory().toString());
+                File myFile = new File(myPath, "MySharedPreferences");
+
+                try
+                {
+                    FileWriter fw = new FileWriter(myFile);
+                    PrintWriter pw = new PrintWriter(fw);
+
+                    Map<String,?> prefsMap = sharedPreferences.getAll();
+
+                    pw.println("S");
+                    pw.println(Uid);
+
+                    for(Map.Entry<String,?> entry : prefsMap.entrySet())
+                    {
+                        if (!entry.getKey().equals("pref_key_UID")) pw.println(entry.getKey() + "=" + entry.getValue().toString());
+                    }
+
+                    pw.close();
+                    fw.close();
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e.toString());
+                }
+                */
             }
             if (id == R.id.displayButton) {
                 ChangeDisplayTask changeDisplayTask = new ChangeDisplayTask(this);
-                changeDisplayTask.execute(Uid, Host, Port);
+                changeDisplayTask.execute(Uid, Host, Port, new String());
             }
             if (id == R.id.pathButton) {
                 TogglePathTask togglePathTask = new TogglePathTask(this);
-                togglePathTask.execute(Uid, Host, Port);
+                togglePathTask.execute(Uid, Host, Port, new String());
             }
         }
         else {
