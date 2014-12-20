@@ -70,14 +70,36 @@
             android:layout_toRightOf="@+id/textView4"
             android:layout_toEndOf="@+id/textView4"/>
     </RelativeLayout>
-    <Button
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:id="@+id/settings_buttons"
         android:layout_height="wrap_content"
-        android:text="Advanced"
-        android:id="@+id/button"
         android:layout_below="@+id/checkBox"
-        android:layout_centerHorizontal="true"
-        android:onClick="onButtonClicked"/>
+        android:weightSum="2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Settings"
+            android:id="@+id/button6"
+            android:onClick="onButtonClicked"
+            android:layout_above="@+id/textView5"
+            android:layout_toLeftOf="@+id/button"
+            android:layout_toStartOf="@+id/button"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Advanced Settings"
+            android:id="@+id/button"
+            android:onClick="onButtonClicked"
+            android:layout_alignRight="@+id/checkBox"
+            android:layout_alignEnd="@+id/checkBox"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -95,7 +117,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Connection Info"
         android:id="@+id/textView5"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/settings_buttons"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <EditText
@@ -134,5 +156,7 @@
         android:layout_below="@+id/editTextPort"
         android:layout_centerHorizontal="true"
         android:onClick="onButtonClicked"/>
+
+
 
 </RelativeLayout>
