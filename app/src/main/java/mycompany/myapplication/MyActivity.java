@@ -117,6 +117,7 @@ public class MyActivity extends ActionBarActivity implements
                 //editor.clear();
                 //editor.commit();
             }
+
             if (id == R.id.trackerButton) {
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
                 toggleTrackerTask.execute(Uid, Host, Port);

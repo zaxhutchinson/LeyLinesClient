@@ -113,7 +113,6 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
         if (UidHostPort[0].equals("ERROR")) {
             Toast.makeText(activity, UidHostPort[1], Toast.LENGTH_LONG).show();
         }
-
         //else if(UidHostPort[1].equals("REFRESH")) {
           //  Toast.makeText(activity, "Status updated.", Toast.LENGTH_LONG).show();
         //}

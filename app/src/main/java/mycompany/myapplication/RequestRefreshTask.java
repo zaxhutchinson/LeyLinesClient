@@ -96,6 +96,7 @@ public class RequestRefreshTask extends AsyncTask<String, String, UserStatus> {
             publishProgress("Illegal argument: " + e);
         }
 
+
         //retrieves string with status to be parsed and stores it in userStatus
         UserStatus userStatus = new UserStatus(UidHostPort[3]);
 
