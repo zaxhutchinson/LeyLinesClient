@@ -64,7 +64,7 @@ public class RequestAccountTask extends AsyncTask<String, String, String[]> {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while(true) {
                 UidHostPort[5] = in.readLine();
-                if(UidHostPort[5].length() > 0) break;
+                if(UidHostPort[5] != null) break;
             }
 
             //stop waiting for input from server

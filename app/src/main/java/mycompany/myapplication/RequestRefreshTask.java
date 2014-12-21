@@ -78,7 +78,7 @@ public class RequestRefreshTask extends AsyncTask<String, String, UserStatus> {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while(true) {
                 UidHostPort[3] = in.readLine();
-                if(UidHostPort[3].length() > 0) break;
+                if (UidHostPort[3] != null) break;
             }
 
             //stop waiting for input from server
