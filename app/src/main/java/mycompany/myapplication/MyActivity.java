@@ -109,18 +109,19 @@ public class MyActivity extends ActionBarActivity implements
         */
 
             if (id == R.id.refreshButton) {
-                //RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
-                //requestRefreshTask.execute(Uid, Host, Port);
+                RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
+                requestRefreshTask.execute(Uid, Host, Port, new String());
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
+                //clears the preferences file (ACCOUNT INFO AS WELL)
+                //SharedPreferences.Editor editor = sharedPreferences.edit();
+                //editor.clear();
+                //editor.commit();
             }
             if (id == R.id.trackerButton) {
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
                 toggleTrackerTask.execute(Uid, Host, Port);
 
-                /*
+                /* writes the preferences to file in their current states
                 File myPath = new File(Environment.getExternalStorageDirectory().toString());
                 File myFile = new File(myPath, "MySharedPreferences");
 

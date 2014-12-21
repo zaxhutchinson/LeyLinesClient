@@ -21,7 +21,7 @@ import java.util.Calendar;
  */
 
 
-public class RequestAccountTask extends AsyncTask<String, Integer, String[]> {
+public class RequestAccountTask extends AsyncTask<String, String, String[]> {
 
     Activity activity = new Activity();
 
@@ -33,7 +33,7 @@ public class RequestAccountTask extends AsyncTask<String, Integer, String[]> {
     @Override
     protected String[] doInBackground(String... UidHostPort) {
         try {
-            //prep new socket
+            //prepare new socket
             Socket socket = new Socket();
 
             //connect to server
@@ -42,6 +42,7 @@ public class RequestAccountTask extends AsyncTask<String, Integer, String[]> {
             //prepare to send message to server
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 
+            //get the current time
             Calendar calendar = Calendar.getInstance();
             long ts = calendar.getTimeInMillis() / 1000;
 
@@ -52,10 +53,12 @@ public class RequestAccountTask extends AsyncTask<String, Integer, String[]> {
                 UidHostPort[4] + "\n" + //longitude
                 ts); //time in seconds
 
-            //let user know you're sending
-            publishProgress(0);
+            //indicate to user that you're sending to server
+            publishProgress("Requesting account...");
+
+            //done with output housekeeping
             out.flush();
-            out.close();
+
 
             //prepare to receive message from server
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -64,60 +67,51 @@ public class RequestAccountTask extends AsyncTask<String, Integer, String[]> {
                 if(UidHostPort[5].length() > 0) break;
             }
 
-            //close input from server
+            //stop waiting for input from server
+            out.close();
             in.close();
 
             //disconnect and close socket
             socket.close();
 
+            //store account details on phone
+            if (UidHostPort[5].equals("OK")) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("pref_key_UID", UidHostPort[0]);
+                editor.putString("pref_key_HOST", UidHostPort[1]);
+                editor.putString("pref_key_PORT", UidHostPort[2]);
+                editor.putBoolean("pref_key_account_setup", true);
+                editor.apply();
+            }
+
 
         } catch (UnknownHostException e) {
-            UidHostPort[1] = "Host \"" + UidHostPort[0] + ":" + UidHostPort[1] + "\" not reachable\n" + e;
-            UidHostPort[0] = "ERROR";
+            publishProgress("Host \"" + UidHostPort[0] + ":" + UidHostPort[1] + "\" unreachable\n" + e);
         } catch (IOException e) {
-            UidHostPort[1] =  "Outgoing I/O operation failed: " + e;
-            UidHostPort[0] = "ERROR";
+            publishProgress("Outgoing I/O operation failed: " + e);
         } catch(IllegalArgumentException e) {
-            UidHostPort[1] = "Illegal argument: " + e;
-            UidHostPort[0] = "ERROR";
+            publishProgress("Illegal argument: " + e);
         }
 
-
-        //returns the strings for use in RetrieveStatusTask
+        //returns the strings for use in onPostExecute
         return UidHostPort;
     }
 
     @Override
-    protected void onProgressUpdate(Integer... progress) {
-        Toast.makeText(activity, "Requesting account...", Toast.LENGTH_LONG).show();
+    protected void onProgressUpdate(String... progress) {
+        Toast.makeText(activity, progress[0], Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
     protected void onPostExecute(String[] UidHostPort) {
-        /*
-        if (UidHostPort[0].equals("ERROR")) {
-            Toast.makeText(activity,UidHostPort[1],Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(activity, "Requesting account...", Toast.LENGTH_LONG).show();
-            //new ConfirmAccountTask(activity).execute(UidHostPort);
-        }
-        */
         if(UidHostPort[5].equals("OK")) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("pref_key_UID",UidHostPort[0]);
-            editor.putString("pref_key_HOST",UidHostPort[1]);
-            editor.putString("pref_key_PORT",UidHostPort[2]);
-            editor.putBoolean("pref_key_account_setup",true);
-            editor.commit();
-            Toast.makeText(activity, "Account created successfully.", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "Account created succssfully.", Toast.LENGTH_LONG).show();
             activity.setResult(Activity.RESULT_OK);
             activity.finish();
         }
         else {
-            //error message was sent instead
             Toast.makeText(activity, String.format("Unable to create account. %s",UidHostPort[5]), Toast.LENGTH_LONG).show();
         }
     }

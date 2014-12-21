@@ -26,6 +26,7 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
     TextView tracker;
     TextView display;
     TextView path;
+
     //TODO variables/object for drawing map goes here
 
     public RetrieveStatusTask(Activity activity) {
@@ -38,6 +39,7 @@ public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> 
         tracker = (TextView)activity.findViewById(R.id.trackerText);
         display = (TextView)activity.findViewById(R.id.displayText);
         path = (TextView)activity.findViewById(R.id.pathText);
+
         //TODO connect to map variables/object here
     }
 
