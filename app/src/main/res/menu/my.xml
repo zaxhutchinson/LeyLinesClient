@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MyActivity" >
     <item android:id="@id/action_destination"
-        android:title="Destination"
+        android:title="@string/action_destination"
         android:orderInCategory="98"
         app:showAsAction="never" />
     <item android:id="@+id/action_settings"
