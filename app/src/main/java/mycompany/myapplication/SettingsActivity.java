@@ -301,7 +301,7 @@ public class SettingsActivity extends ActionBarActivity implements
             String message = String.format("Desired UID: %s\nServer Location: %s:%s\nCurrent Location: (%s,%s)\nIs this correct?",uid,host,port,latitude,longitude);
 
             builder.setMessage(message)
-                    .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             RequestAccountTask requestAccountTask = new RequestAccountTask(getActivity());
                             requestAccountTask.execute(uid, host, port, latitude, longitude, new String());
