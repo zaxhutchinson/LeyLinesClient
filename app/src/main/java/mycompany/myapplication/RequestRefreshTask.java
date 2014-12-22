@@ -126,6 +126,8 @@ public class RequestRefreshTask extends AsyncTask<String, String, UserStatus> {
             path.setGravity(Gravity.CENTER);
             path.setText(userStatus.getPathCreationText());
         } catch (Exception e) {
+            Toast.makeText(activity, "Something went wrong: " + e, Toast.LENGTH_LONG).show();
+
 
         }
 
