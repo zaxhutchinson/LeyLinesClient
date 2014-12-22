@@ -1,6 +1,7 @@
 package mycompany.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Gravity;
 import android.widget.TextView;
@@ -27,11 +28,6 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
     TextView path;
 
     //TODO variables/object for drawing map goes here
-
-    @Override
-    protected void onPreExecute() {
-
-    }
 
     public ToggleTrackerTask(Activity activity) {
         this.activity = activity;
@@ -93,6 +89,14 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
 
         //retrieves string with status to be parsed and stores it in userStatus
         UserStatus userStatus = new UserStatus(UidHostPort[3]);
+
+        //starts the gps collecting and sending services
+        if (userStatus.isTrackerEnabled())  {
+            Intent gpsCollector = new Intent(activity, MockGPSService.class);
+            activity.startService(gpsCollector);
+            Intent gpsSender = new Intent(activity, SendGPSService.class);
+            activity.startService(gpsSender);
+        }
 
         //returns the strings for use in onPostExecute
         return userStatus;

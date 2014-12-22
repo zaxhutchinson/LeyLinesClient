@@ -86,6 +86,12 @@ public class MockGPSService extends IntentService implements
             System.out.println("No longer collecting gps coords");
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            stopSelf();
+        }
     }
 
 
