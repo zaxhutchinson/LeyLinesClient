@@ -1,12 +1,10 @@
 package mycompany.myapplication;
 
-import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,14 +31,17 @@ public class SendGPSService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
+        SendGPSTask collectGPSTask = new SendGPSTask();
+        collectGPSTask.execute();
 
     }
 
-    public class CollectGPSTask extends AsyncTask<Void, String, Void> {
+    public class SendGPSTask extends AsyncTask<Void, String, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
             long startTime;
+            System.out.println("Now sending gps coordinates");
             while (sharedPreferences.getBoolean("pref_key_tracker_enabled",false)) {
                 startTime = System.currentTimeMillis();
                 while (Long.parseLong(sharedPreferences.getString("pref_key_gps_send_frequency","")) * 1000 + startTime > System.currentTimeMillis()) {
@@ -79,8 +80,6 @@ public class SendGPSService extends IntentService {
 
                     //done with output
                     out.flush();
-
-
 
                     //stop waiting for input from server
                     out.close();

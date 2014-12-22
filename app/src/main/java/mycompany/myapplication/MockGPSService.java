@@ -69,6 +69,7 @@ public class MockGPSService extends IntentService implements
         @Override
         protected Void doInBackground(Void... voids) {
             long startTime;
+            System.out.println("Now collecting gps coordinates");
             while (sharedPreferences.getBoolean("pref_key_tracker_enabled",false)) {
                 startTime = System.currentTimeMillis();
                 while (Long.parseLong(sharedPreferences.getString("pref_key_gps_collect_frequency","")) * 1000 + startTime > System.currentTimeMillis()) {
@@ -83,7 +84,7 @@ public class MockGPSService extends IntentService implements
                 }
 
             }
-            System.out.println("No longer collecting gps coords");
+            System.out.println("No longer collecting gps coordinates");
             return null;
         }
 
