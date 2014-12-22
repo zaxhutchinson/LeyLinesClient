@@ -46,6 +46,9 @@ public class RequestAccountTask extends AsyncTask<String, String, String[]> {
             Calendar calendar = Calendar.getInstance();
             long ts = calendar.getTimeInMillis() / 1000;
 
+            //indicate to user that you're sending to server
+            publishProgress("Requesting account...");
+
             //text to send in order to request a new account
             out.print("I\n" + //indicates command for new account
                 UidHostPort[0] + "\n" + //requested id
@@ -53,8 +56,6 @@ public class RequestAccountTask extends AsyncTask<String, String, String[]> {
                 UidHostPort[4] + "\n" + //longitude
                 ts); //time in seconds
 
-            //indicate to user that you're sending to server
-            publishProgress("Requesting account...");
 
             //done with output housekeeping
             out.flush();
@@ -107,7 +108,7 @@ public class RequestAccountTask extends AsyncTask<String, String, String[]> {
     @Override
     protected void onPostExecute(String[] UidHostPort) {
         if(UidHostPort[5].equals("OK")) {
-            Toast.makeText(activity, "Account created succssfully.", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "Account created successfully.", Toast.LENGTH_LONG).show();
             activity.setResult(Activity.RESULT_OK);
             activity.finish();
         }
