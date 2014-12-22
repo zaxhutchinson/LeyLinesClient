@@ -118,7 +118,7 @@ public class MyActivity extends ActionBarActivity implements
 
             if (id == R.id.trackerButton) {
                 ToggleTrackerTask toggleTrackerTask = new ToggleTrackerTask(this);
-                toggleTrackerTask.execute(Uid, Host, Port);
+                toggleTrackerTask.execute(Uid, Host, Port, new String());
 
                 /* writes the preferences to file in their current states
                 File myPath = new File(Environment.getExternalStorageDirectory().toString());
