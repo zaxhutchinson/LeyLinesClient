@@ -30,7 +30,10 @@ import com.google.android.gms.location.LocationServices;
 /**
  * Created by tnash219 on 11/16/2014.
  */
-public class SettingsActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class SettingsActivity extends ActionBarActivity implements
+        AdapterView.OnItemSelectedListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
