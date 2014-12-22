@@ -58,11 +58,11 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 
             //text to send in order to request a new account
-            out.print("T\n" + //indicates command for refresh
+            out.print("T\n" + //indicates command for toggling tracker
                     UidHostPort[0] + "\n"); //user id
 
             //indicate to user that you're sending to server
-            publishProgress("Refreshing...");
+            publishProgress("Updating...");
 
             //done with output
             out.flush();

@@ -29,8 +29,6 @@ import java.util.Map;
 public class MyActivity extends ActionBarActivity implements
         View.OnClickListener {
 
-    Intent gpsIntent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +54,8 @@ public class MyActivity extends ActionBarActivity implements
         pathButton.setOnClickListener(this);
         pathButton.setEnabled(false);
 
-        //gpsIntent = new Intent(this, MockGPSService.class);
-        //startService(gpsIntent);
+        Intent gpsIntent = new Intent(this, MockGPSService.class);
+        startService(gpsIntent);
     }
 
     @Override
