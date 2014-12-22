@@ -75,6 +75,9 @@
         <service
             android:name=".MockGPSService"
             android:exported="false" />
+        <service
+            android:name=".SendGPSService"
+            android:exported="false" />
 
     </application>
 
