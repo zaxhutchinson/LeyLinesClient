@@ -63,23 +63,23 @@ public class RequestRefreshTask extends AsyncTask<String, String, UserStatus> {
             //prepare to send message to server
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 
+            //prepare to receive message from server
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             //text to send in order to request a new account
             out.print("R\n" + //indicates command for refresh
-                    UidHostPort[0] + "\n"); //user id
-
-            //indicate to user that you're sending to server
-            publishProgress("Refreshing...");
+                    UidHostPort[0]); //user id
 
             //done with output
             out.flush();
 
-
-            //prepare to receive message from server
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while(true) {
                 UidHostPort[3] = in.readLine();
                 if (UidHostPort[3] != null) break;
             }
+
+            //indicate to user that you're sending to server
+            publishProgress("Refreshing...");
 
             //stop waiting for input from server
             out.close();

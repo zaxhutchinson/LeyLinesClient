@@ -169,7 +169,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         /*Background Activity end*/
 
         /*Alert Configuration start*/
-        //Distance Overall
+        //Distance Relative
         Boolean boolContainer = sharedPreferences.getBoolean("pref_key_distance_settings",false);
         if (boolContainer) {
             Preference preference = findPreference("pref_key_distance_config");
@@ -202,7 +202,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         }
 
         /*Alert Configuration start*/
-        // Distance Relative to previous paths
+        // Distance Total
         boolContainer = sharedPreferences.getBoolean("pref_key_distance_total_settings",false);
         if(boolContainer) {
             Preference preference = findPreference("pref_key_distance_total_config");
