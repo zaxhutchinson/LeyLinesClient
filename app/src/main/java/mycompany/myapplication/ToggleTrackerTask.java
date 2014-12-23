@@ -2,7 +2,9 @@ package mycompany.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,8 +92,22 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
         //retrieves string with status to be parsed and stores it in userStatus
         UserStatus userStatus = new UserStatus(UidHostPort[3]);
 
+
+        //prepares data for updating preferences
+        String[] retrievedPreference = UidHostPort[3].split("[ ]+");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (retrievedPreference.length == 4) {
+            editor.putString("pref_key_alert_status", retrievedPreference[0]);
+            editor.putBoolean("pref_key_tracker_enabled", Boolean.valueOf(retrievedPreference[1]));
+            editor.putString("pref_key_display_status", retrievedPreference[2]);
+            editor.putBoolean("pref_key_automatic_path", Boolean.valueOf(retrievedPreference[3]));
+            editor.commit();
+        }
+
         //starts the gps collecting and sending services
-        if (userStatus.isTrackerEnabled())  {
+        if (sharedPreferences.getBoolean("pref_key_tracker_enabled",false))  {
             Intent gpsCollector = new Intent(activity, MockGPSService.class);
             activity.startService(gpsCollector);
             Intent gpsSender = new Intent(activity, SendGPSService.class);

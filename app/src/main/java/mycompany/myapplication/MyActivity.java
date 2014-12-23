@@ -54,8 +54,6 @@ public class MyActivity extends ActionBarActivity implements
         pathButton.setOnClickListener(this);
         pathButton.setEnabled(false);
 
-        Intent gpsIntent = new Intent(this, MockGPSService.class);
-        startService(gpsIntent);
     }
 
     @Override
@@ -113,7 +111,7 @@ public class MyActivity extends ActionBarActivity implements
                 //clears the preferences file (ACCOUNT INFO AS WELL)
                 //SharedPreferences.Editor editor = sharedPreferences.edit();
                 //editor.clear();
-                //editor.commit();
+                //editor.apply();
             }
 
             if (id == R.id.trackerButton) {
