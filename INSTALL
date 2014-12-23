@@ -1,0 +1,59 @@
+-----------------------------------------
+Leylines Server Installation Instructions
+-----------------------------------------
+
+Requirements:
+- Python 2.5 or higher (not compatible with 3.x)
+- Linux (tested on Ubuntu Server 14.10)
+- or Plan 9 (tested on 9front running on a qemu virtual machine)
+
+Install
+- Clone the repo onto the server.
+- Default port for leylines is defined in config.py as 65006.
+	If changed, you must alter client to match.
+
+Start
+- To start leylines server type: python main.py
+	RECOMMENDED:
+	(add '-d' command line arg to get debug printing to console)
+
+
+Stop
+- To stop leylines server, you must send a die message. You can
+	do this locally or remotely with the stop.sh script:
+	
+	'./stop.sh [address] [port]
+
+	e.g. (if running locally) ./stop.sh localhost 65006
+
+	This will send the message to the server to cease all operations. Leylines server is a multi-threaded program that cannot be killed with Ctrl-C. Note: if you shut down the server, you may have to wait a minute or two for the port to free up before restarting.
+
+Clean
+- To erase all user profiles, logs and reset the server, you can run the clean.sh script:
+
+	./clean.sh all - erases all profiles, uid_list and logs.
+	./clean.sh [profile_id] - erases the requested profile, but this option is not fully tested and has some known weaknesses.
+
+
+-----------------------------------------
+Leylines Client Installation Instructions
+-----------------------------------------
+
+Requirements:
+- Android Device (phone or tablet)
+	- Running 2.3 (Gingerbread) or later (API 9)
+	- Enabled device to accept unknown sources (settings under security)
+	
+Installation:	
+- Download .apk file from: FILE LOCATION
+- Selecting the file will ask you to install it. Select 'yes'...obviously.
+
+Run:
+- Click on the settings menu.
+- Fill in the info for userid, host and port of your server. Click OK.
+- The server will respond if account creation was successful.
+- You may return to the settings menu to alter your preferences.
+- When you are ready to begin tracking, you must hit the 'Tracker' button twice. This is a double-confirm that you intend to begin tracking. You will know it's working because the text next to the tracker button will turn green.
+- You can at any time turn off the GPS tracker by hitting the tracker button again. This will signal to the server you do not wish to be tracked.
+- Lastly, the refresh button will return the status of your last communicated location from the server.
+

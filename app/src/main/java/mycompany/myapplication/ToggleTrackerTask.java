@@ -1,6 +1,7 @@
 package mycompany.myapplication;
 
 import android.app.Activity;
+import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -20,47 +21,56 @@ import java.net.UnknownHostException;
 /**
  * Created by tnash219 on 10/24/2014.
  */
-public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
-
+//public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
+public class ToggleTrackerTask extends IntentService {
     //required for toast messages and manipulation of the status view
-    Activity activity;
-    TextView status;
-    TextView tracker;
-    TextView display;
-    TextView path;
+    //Activity activity;
+    //TextView status;
+    //TextView tracker;
+    //TextView display;
+    //TextView path;
 
     //TODO variables/object for drawing map goes here
-
-    public ToggleTrackerTask(Activity activity) {
-        this.activity = activity;
-    }
+    public ToggleTrackerTask() { super("ToggleTrackerTask"); }
+    //public ToggleTrackerTask(Activity activity) {
+    //    this.activity = activity;
+    //}
 
     //sends a message to a server indicating that it should respond with the status of the device
+    //@Override
+    //protected UserStatus doInBackground(String... UidHostPort) {
     @Override
-    protected UserStatus doInBackground(String... UidHostPort) {
-        status = (TextView)activity.findViewById(R.id.statusText);
-        tracker = (TextView)activity.findViewById(R.id.trackerText);
-        display = (TextView)activity.findViewById(R.id.displayText);
-        path = (TextView)activity.findViewById(R.id.pathText);
+    protected void onHandleIntent(Intent intent) {
+
+        //status = (TextView)activity.findViewById(R.id.statusText);
+        //tracker = (TextView)activity.findViewById(R.id.trackerText);
+        //display = (TextView)activity.findViewById(R.id.displayText);
+        //path = (TextView)activity.findViewById(R.id.pathText);
 
         //TODO connect to map variables/object here
+
+        String Uid = intent.getStringExtra("Uid");
+        String Host = intent.getStringExtra("Host");
+        String Port = intent.getStringExtra("Port");
+
+        String ReturnVal = "";
 
         try {
             //prepare new socket
             Socket socket = new Socket();
 
             //connect to server
-            socket.connect(new InetSocketAddress(UidHostPort[1], Integer.parseInt(UidHostPort[2])), 5000);
+            socket.connect(new InetSocketAddress(Host, Integer.parseInt(Port)), 5000);
 
             //prepare to send message to server
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 
             //text to send in order to request a new account
             out.print("T\n" + //indicates command for toggling tracker
-                    UidHostPort[0] + "\n"); //user id
+                    Uid + "\n"); //user id
 
             //indicate to user that you're sending to server
-            publishProgress("Updating...");
+            //publishProgress("Updating...");
 
             //done with output
             out.flush();
@@ -69,8 +79,8 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
             //prepare to receive message from server
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while(true) {
-                UidHostPort[3] = in.readLine();
-                if (UidHostPort[3] != null) break;
+                ReturnVal = in.readLine();
+                if (ReturnVal != null) break;
             }
 
             //stop waiting for input from server
@@ -81,21 +91,24 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
             socket.close();
 
         } catch (UnknownHostException e) {
-            publishProgress("Host \"" + UidHostPort[1] + ":" + UidHostPort[2] + "\" unreachable\n" + e);
+            System.out.println("Host \"" + Host + ":" + Port + "\" unreachable\n" + e);
+            //publishProgress("Host \"" + UidHostPort[1] + ":" + UidHostPort[2] + "\" unreachable\n" + e);
         } catch (IOException e) {
-            publishProgress("I/O operation failed: " + e);
+            System.out.println("I/O operation failed: " + e);
+            //publishProgress("I/O operation failed: " + e);
         } catch(IllegalArgumentException e) {
-            publishProgress("Illegal argument: " + e);
+            //publishProgress("Illegal argument: " + e);
+            System.out.println("Illegal argument: " + e);
         }
 
 
         //retrieves string with status to be parsed and stores it in userStatus
-        UserStatus userStatus = new UserStatus(UidHostPort[3]);
+        UserStatus userStatus = new UserStatus(ReturnVal);
 
 
         //prepares data for updating preferences
-        String[] retrievedPreference = UidHostPort[3].split("[ ]+");
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        String[] retrievedPreference = ReturnVal.split("[ ]+");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if (retrievedPreference.length == 4) {
@@ -108,16 +121,20 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
 
         //starts the gps collecting and sending services
         if (sharedPreferences.getBoolean("pref_key_tracker_enabled",false))  {
-            Intent gpsCollector = new Intent(activity, MockGPSService.class);
-            activity.startService(gpsCollector);
-            Intent gpsSender = new Intent(activity, SendGPSService.class);
-            activity.startService(gpsSender);
+            Intent gpsCollector = new Intent(this, MockGPSService.class);
+            this.startService(gpsCollector);
+            //Intent gpsSender = new Intent(this, SendGPSService.class);
+            //activity.startService(gpsSender);
         }
 
+        //Intent resultData = new Intent();
+        //resultData.putExtra("returnVal", "Re")
+
         //returns the strings for use in onPostExecute
-        return userStatus;
+        //return userStatus;
     }
 
+    /*
     @Override
     protected void onProgressUpdate(String... progress) {
         Toast.makeText(activity, progress[0], Toast.LENGTH_SHORT).show();
@@ -146,4 +163,5 @@ public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
 
         //TODO methods for redrawing map goes here
     }
+    */
 }
