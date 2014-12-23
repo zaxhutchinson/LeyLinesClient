@@ -29,6 +29,7 @@ public class SendGPSService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        setIntentRedelivery(true);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
         SendGPSTask collectGPSTask = new SendGPSTask();

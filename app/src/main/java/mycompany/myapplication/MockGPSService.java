@@ -48,6 +48,7 @@ public class MockGPSService extends IntentService implements
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        setIntentRedelivery(true);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
         buildGoogleApiClient();
