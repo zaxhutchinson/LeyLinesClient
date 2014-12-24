@@ -74,7 +74,8 @@
             android:title="@string/contact_self_setting"
             android:key="pref_key_contact_self_setting"
             android:summary="@string/contact_self_summary"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            android:enabled="false" /><!-- not implemented yet -->
     </PreferenceCategory>
 
     <PreferenceCategory
