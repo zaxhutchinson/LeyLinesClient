@@ -109,6 +109,7 @@
         <string name="tracker_config">Tracker</string>
             <string name="tracker_settings">Tracker Alerts</string>
             <string name="tracker_summary">Allows sending alerts whenever certain tracker activity has not been maintained</string>
+            <string name="tracker_importance">Tracker Importance</string>
             <string name="tracker_disabled_setting">Tracker disabled</string>
             <string name="tracker_disabled_summary">Alert gets triggered if tracker is off too long</string>
                 <string name="tracker_disabled_duration_setting">Time duration disabled</string>
