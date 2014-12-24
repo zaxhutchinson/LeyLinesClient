@@ -44,8 +44,8 @@ import java.util.Map;
  */
 public class SettingsActivity extends ActionBarActivity implements
         AdapterView.OnItemSelectedListener,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        ConnectionCallbacks,
+        OnConnectionFailedListener {
 
 
 
@@ -261,14 +261,17 @@ public class SettingsActivity extends ActionBarActivity implements
         }
 
         if (R.id.button5 == id) {
-            TextView textView = (TextView)findViewById(R.id.editTextUid);
-            String uid = textView.getText().toString();
-            textView = (TextView)findViewById(R.id.editTextHost);
-            String host = textView.getText().toString();
-            textView = (TextView)findViewById(R.id.editTextPort);
-            String port = textView.getText().toString();
-            SendAccountFragment sendAccountFragment = new SendAccountFragment().newInstance(uid,host,port,mLatitude,mLongitude);
-            sendAccountFragment.show(getSupportFragmentManager(),"sendAccountFragment");
+            if (!sharedPreferences.getBoolean("pref_key_tracker_enabled",false)) {
+                TextView textView = (TextView) findViewById(R.id.editTextUid);
+                String uid = textView.getText().toString();
+                textView = (TextView) findViewById(R.id.editTextHost);
+                String host = textView.getText().toString();
+                textView = (TextView) findViewById(R.id.editTextPort);
+                String port = textView.getText().toString();
+                SendAccountFragment sendAccountFragment = new SendAccountFragment().newInstance(uid, host, port, mLatitude, mLongitude);
+                sendAccountFragment.show(getSupportFragmentManager(), "sendAccountFragment");
+            }
+            else Toast.makeText(this, "Disable tracker first", Toast.LENGTH_SHORT).show();
         }
     }
 
