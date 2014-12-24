@@ -3,7 +3,8 @@
 
     <PreferenceCategory
         android:title="@string/category_contacts"
-        android:key="pref_key_contacts_settings">
+        android:key="pref_key_contacts_settings"
+        android:enabled="false"> <!-- not implemented yet -->
         <PreferenceScreen
             android:title="@string/contact1_config"
             android:key="pref_key_contact1_config">
@@ -76,6 +77,7 @@
             android:summary="@string/contact_self_summary"
             android:defaultValue="false" />
     </PreferenceCategory>
+
     <PreferenceCategory
         android:title="@string/category_frequency"
         android:key="pref_key_frequency_settings">
@@ -203,7 +205,8 @@
 
         <PreferenceScreen
             android:title="@string/location_config"
-            android:key="pref_key_location_config">
+            android:key="pref_key_location_config"
+            android:enabled="false"> <!-- not implemented yet -->
             <CheckBoxPreference
                 android:title="@string/location_settings"
                 android:key="pref_key_location_settings"
@@ -241,7 +244,8 @@
 
         <PreferenceScreen
             android:title="@string/battery_config"
-            android:key="pref_key_battery_config">
+            android:key="pref_key_battery_config"
+            android:enabled="false"> <!-- not implemented yet -->
             <CheckBoxPreference
                 android:title="@string/battery_settings"
                 android:key="pref_key_battery_settings"
@@ -282,8 +286,8 @@
                 android:summary="@string/tracker_summary"
                 android:defaultValue="false" />
             <net.jayschwa.android.preference.SliderPreference
-                android:dependency="pref_key_distance_settings"
-                android:title="@string/distance_relative_importance"
+                android:dependency="pref_key_tracker_settings"
+                android:title="@string/tracker_importance"
                 android:key="pref_key_distance_importance"
                 android:summary="@array/importance_summaries"
                 android:defaultValue="@string/importance_default"
