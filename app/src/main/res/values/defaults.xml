@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- lifestyle defaults -->
     <string-array name="adventurous_lifestyle">
-        <item>false</item>
         <item>20000</item>
-        <item>true</item>
-        <item>21600</item>
-        <item>true</item>
+        <item>10000</item>
         <item>86400</item>
+        <item>604800</item>
+        <item>5</item>
     </string-array>
     <string-array name="regressive_lifestyle">
-        <item>true</item>
+        <item>10000</item>
         <item>5000</item>
-        <item>true</item>
-        <item>3600</item>
-        <item>true</item>
-        <item>259200</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>4</item>
     </string-array>
     <string-array name="child_lifestyle">
-        <item>true</item>
+        <item>500</item>
         <item>1000</item>
-        <item>true</item>
-        <item>900</item>
-        <item>true</item>
-        <item>43200</item>
+        <item>10800</item>
+        <item>3600</item>
+        <item>2</item>
     </string-array>
     <string-array name="senior_lifestyle">
-        <item>true</item>
-        <item>500</item>
-        <item>true</item>
-        <item>300</item>
-        <item>true</item>
-        <item>259200</item>
+        <item>5000</item>
+        <item>5000</item>
+        <item>10800</item>
+        <item>21600</item>
+        <item>3</item>
     </string-array>
 
+    <!-- sensitivity defaults -->
+    <string-array name="low_sensitivity">
+        <item>43200</item>
+        <item>1800</item>
+        <item>10800</item>
+        <item>.25</item>
+    </string-array>
+    <string-array name="moderate_sensitivity">
+        <item>10800</item>
+        <item>900</item>
+        <item>3600</item>
+        <item>.5</item>
+    </string-array>
+    <string-array name="high_sensitivity">
+        <item>3600</item>
+        <item>300</item>
+        <item>1800</item>
+        <item>.75</item>
+    </string-array>
 </resources>
