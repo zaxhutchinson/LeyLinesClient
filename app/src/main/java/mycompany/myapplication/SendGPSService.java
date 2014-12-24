@@ -16,12 +16,14 @@ import java.net.UnknownHostException;
 
 /**
  * Created by tnash on 12/22/14.
+ *
+ * CURRENT UNUSED -- Combined GPS collection and sending into
+ * a single entity. The code below is now in MockGPSService.
  */
 public class SendGPSService extends IntentService {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-
     public SendGPSService() {
         super("SendGPSService");
     }

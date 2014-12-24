@@ -34,10 +34,20 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Map;
 
+/* Leylines Main Activity:
+ * Created by Tamel Nash
+ * Assisted by Zachary Hutchinson
+ *
+ * Provides minimal access to leylines functionality. Through a settings menu
+ * and buttons to enable/disable tracking and retrieve the user's status
+ * from the server.
+ *
+ */
 
 public class MyActivity extends ActionBarActivity implements
         View.OnClickListener {
 
+    // Holds status texts displayed to the screen
     TextView status;
     TextView tracker;
     TextView display;
@@ -47,6 +57,7 @@ public class MyActivity extends ActionBarActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Required to do communication in the main thread.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -128,10 +139,11 @@ public class MyActivity extends ActionBarActivity implements
         }
         */
 
+            // If the Refresh button is clicked, send a request for status
+            // update to the server. When it's received, display new status.
             if (id == R.id.refreshButton) {
-                //RequestRefreshTask requestRefreshTask = new RequestRefreshTask(this);
-                //requestRefreshTask.execute(Uid, Host, Port, new String());
 
+                // Containers for the status text.
                 status = (TextView)this.findViewById(R.id.statusText);
                 tracker = (TextView)this.findViewById(R.id.trackerText);
                 display = (TextView)this.findViewById(R.id.displayText);
@@ -139,6 +151,7 @@ public class MyActivity extends ActionBarActivity implements
 
                 //TODO connect to map variables/object here
 
+                // Will hold the message return from the server
                 String ReturnVal = "";
 
                 try {
@@ -166,9 +179,6 @@ public class MyActivity extends ActionBarActivity implements
                         if (ReturnVal != null) break;
                     }
 
-                    //indicate to user that you're sending to server
-                    //publishProgress("Refreshing...");
-
                     //stop waiting for input from server
                     out.close();
                     in.close();
@@ -195,6 +205,7 @@ public class MyActivity extends ActionBarActivity implements
                 String[] retrievedPreference = ReturnVal.split("[ ]+");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                // Update visual status for the user.
                 if (retrievedPreference.length == 4) {
                     editor.putString("pref_key_alert_status", retrievedPreference[0]);
                     editor.putBoolean("pref_key_tracker_enabled", Boolean.valueOf(retrievedPreference[1]));
@@ -202,8 +213,6 @@ public class MyActivity extends ActionBarActivity implements
                     editor.putBoolean("pref_key_automatic_path", Boolean.valueOf(retrievedPreference[3]));
                     editor.apply();
                 }
-
-                //returns the strings for use in onPostExecute
 
                 try {
                     status.setGravity(Gravity.CENTER);
@@ -224,6 +233,9 @@ public class MyActivity extends ActionBarActivity implements
                 }
             }
 
+            // The user hit the tracker button. Request that the server
+            // flip the tracking status. If an async GPS task is running,
+            // a false value will kill it. Else, we'll start a new one.
             if (id == R.id.trackerButton) {
 
                 status = (TextView)this.findViewById(R.id.statusText);
@@ -233,6 +245,7 @@ public class MyActivity extends ActionBarActivity implements
 
                 //TODO connect to map variables/object here
 
+                // The message returned from the server
                 String ReturnVal = "";
 
                 try {
@@ -251,7 +264,6 @@ public class MyActivity extends ActionBarActivity implements
 
                     //done with output
                     out.flush();
-
 
                     //prepare to receive message from server
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -348,10 +360,12 @@ public class MyActivity extends ActionBarActivity implements
                 }
                 */
             }
+            // NOT IMPLEMENTED
             if (id == R.id.displayButton) {
                 ChangeDisplayTask changeDisplayTask = new ChangeDisplayTask(this);
                 changeDisplayTask.execute(Uid, Host, Port, new String());
             }
+            // NOT IMPLEMENTED
             if (id == R.id.pathButton) {
                 TogglePathTask togglePathTask = new TogglePathTask(this);
                 togglePathTask.execute(Uid, Host, Port, new String());

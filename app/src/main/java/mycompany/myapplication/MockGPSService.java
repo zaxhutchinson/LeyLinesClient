@@ -32,18 +32,27 @@ import java.util.Calendar;
 
 /**
  * Created by tnash219 on 10/20/2014.
+ *
+ * MockGPSService sets up google related stuff to retrieve GPS
+ * Coordinates, and calls the async task that does the collection
+ * and sending of coordinates to the server.
  */
 public class MockGPSService extends IntentService implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
+
+    // Holds the GPS coordinate as it is retrieved.
     private Location mLastLocation;
+
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
     private boolean isConnected;
 
+    // Used to keep track of our collect and send intervals
     private long collectStartTime;
     private long sendStartTime;
 
@@ -59,10 +68,16 @@ public class MockGPSService extends IntentService implements
     @Override
     protected void onHandleIntent(Intent intent) {
         setIntentRedelivery(true);
+
+        // Set up preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
+
+        // Set up google api client
         buildGoogleApiClient();
         mGoogleApiClient.connect();
+
+        // Start the async GPS task
         CollectGPSTask collectGPSTask = new CollectGPSTask();
         collectGPSTask.execute();
         stopSelf();
@@ -76,6 +91,14 @@ public class MockGPSService extends IntentService implements
                 .build();
     }
 
+    /* The heart and soul of Leylines tracking. It collects and sends
+     * the GPS coordinates to the server off the main UI Thread of
+     * the application.
+     *
+     * Warning: due to the nature of Android asynchronous programming
+     * no other async task can run while this is in operation as it
+     * blocks all other async tasks.
+     */
     public class CollectGPSTask extends AsyncTask<Void, String, Void> {
 
         @Override
@@ -88,8 +111,12 @@ public class MockGPSService extends IntentService implements
         protected Void doInBackground(Void... voids) {
 
             System.out.println("Now collecting & sending gps coordinates");
+
+            // While tracking is enabled...run the service.
             while (sharedPreferences.getBoolean("pref_key_tracker_enabled",false)) {
 
+                // If we've passed our collection interval, grab another GPS
+                // coordinate and reset the collectStartTime.
                 if (Long.parseLong(sharedPreferences.getString("pref_key_gps_collect_frequency","")) * 1000 + collectStartTime < System.currentTimeMillis()) {
 
                     collectStartTime = System.currentTimeMillis();
@@ -106,6 +133,8 @@ public class MockGPSService extends IntentService implements
 
                 }
 
+                // If we're past our send interval, send all the GPS coordinates we have
+                // collected thus far and reset the sendStartTime.
                 if (Long.parseLong(sharedPreferences.getString("pref_key_gps_send_frequency","")) * 1000 + sendStartTime < System.currentTimeMillis()) {
 
                     sendStartTime = System.currentTimeMillis();
