@@ -169,7 +169,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         /*Background Activity end*/
 
         /*Alert Configuration start*/
-        //Distance Relative
+        //Relative Distance
         Boolean boolContainer = sharedPreferences.getBoolean("pref_key_distance_settings",false);
         if (boolContainer) {
             Preference preference = findPreference("pref_key_distance_config");
@@ -202,7 +202,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         }
 
         /*Alert Configuration start*/
-        // Distance Total
+        //Total Distance
         boolContainer = sharedPreferences.getBoolean("pref_key_distance_total_settings",false);
         if(boolContainer) {
             Preference preference = findPreference("pref_key_distance_total_config");
@@ -490,7 +490,7 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
         /*Background Activity end*/
 
         /*Alert Configuration start*/
-        //Distance
+        //Relative Distance
         else if (key.equals("pref_key_distance_settings")) {
             CheckBoxPreference checkBoxPreference = (CheckBoxPreference)preference;
             preference = findPreference("pref_key_distance_config");
@@ -500,6 +500,22 @@ public class AdvancedSettingsActivity extends PreferenceActivity implements Shar
             //placeholder
         }
         else if (key.equals("pref_key_distance_deviation_setting")) {
+            ListPreference listPreference = (ListPreference)preference;
+            container = "You're expected not to be off your normal path for more than "
+                    + listPreference.getEntry().toString().toLowerCase();
+            preference.setSummary(container);
+        }
+
+        //Total Distance
+        else if (key.equals("pref_key_distance_total_settings")) {
+            CheckBoxPreference checkBoxPreference = (CheckBoxPreference)preference;
+            preference = findPreference("pref_key_distance_total_config");
+            preference.setSummary(checkBoxPreference.isChecked() ? "Alerts currently enabled" : "Alerts currently disabled");
+        }
+        else if (key.equals("pref_key_distance_total_importance")) {
+            //placeholder
+        }
+        else if (key.equals("pref_key_distance_deviation_total_setting")) {
             ListPreference listPreference = (ListPreference)preference;
             container = "You're expected not to be off your normal path for more than "
                     + listPreference.getEntry().toString().toLowerCase();
