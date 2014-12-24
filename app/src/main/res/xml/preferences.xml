@@ -319,7 +319,8 @@
                 android:key="pref_key_tracker_inactive_duration_setting"
                 android:defaultValue="@string/tracker_inactive_duration_default"
                 android:entries="@array/timeframe_entries"
-                android:entryValues="@array/time_entry_values" />
+                android:entryValues="@array/time_entry_values"
+                android:enabled="false" /> <!-- not implemented yet -->
             <CheckBoxPreference
                 android:dependency="pref_key_tracker_settings"
                 android:title="@string/tracker_response_setting"
