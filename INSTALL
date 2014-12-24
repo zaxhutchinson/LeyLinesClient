@@ -69,3 +69,9 @@ Run:
 - Lastly, the refresh button will return the status of your 
   last communicated location from the server.
 
+Settings:
+- In order for the settings to be changed the tracker must be
+  toggled off. The settings of Leylines are not meant to be changed
+  on a whim and will eventually be password protected to further
+  discourage frivolous changes.
+
