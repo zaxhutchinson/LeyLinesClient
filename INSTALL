@@ -26,13 +26,18 @@ Stop
 
 	e.g. (if running locally) ./stop.sh localhost 65006
 
-	This will send the message to the server to cease all operations. Leylines server is a multi-threaded program that cannot be killed with Ctrl-C. Note: if you shut down the server, you may have to wait a minute or two for the port to free up before restarting.
+	This will send the message to the server to cease all operations. 
+	Leylines server is a multi-threaded program that cannot be killed 
+	with Ctrl-C. Note: if you shut down the server, you may have to 
+	wait a minute or two for the port to free up before restarting.
 
 Clean
-- To erase all user profiles, logs and reset the server, you can run the clean.sh script:
+- To erase all user profiles, logs and reset the server, you can run 
+  the clean.sh script:
 
 	./clean.sh all - erases all profiles, uid_list and logs.
-	./clean.sh [profile_id] - erases the requested profile, but this option is not fully tested and has some known weaknesses.
+	./clean.sh [profile_id] - erases the requested profile, 
+		but this option is not fully tested and has some known weaknesses.
 
 
 -----------------------------------------
@@ -50,10 +55,17 @@ Installation:
 
 Run:
 - Click on the settings menu.
-- Fill in the info for userid, host and port of your server. Click OK.
+- Fill in the info for userid, host and port of your server. 
+- Click OK.
 - The server will respond if account creation was successful.
 - You may return to the settings menu to alter your preferences.
-- When you are ready to begin tracking, you must hit the 'Tracker' button twice. This is a double-confirm that you intend to begin tracking. You will know it's working because the text next to the tracker button will turn green.
-- You can at any time turn off the GPS tracker by hitting the tracker button again. This will signal to the server you do not wish to be tracked.
-- Lastly, the refresh button will return the status of your last communicated location from the server.
+- When you are ready to begin tracking, you must hit the 'Tracker' 
+  button twice. This is a double-confirm that you intend to begin 
+  tracking. You will know it's working because the text next to 
+  the tracker button will turn green.
+- You can at any time turn off the GPS tracker by hitting the 
+  tracker button again. This will signal to the server you do 
+  not wish to be tracked.
+- Lastly, the refresh button will return the status of your 
+  last communicated location from the server.
 
