@@ -74,7 +74,7 @@ public class MyActivity extends ActionBarActivity implements
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (sharedPreferences.getBoolean("pref_key_account_setup",false) && sharedPreferences.contains("pref_key_last_update")) {
-
+            //TODO: Show last status on create
         }
 
     }
