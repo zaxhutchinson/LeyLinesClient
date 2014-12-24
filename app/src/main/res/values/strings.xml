@@ -138,7 +138,7 @@
         <item>Higher</item>
     </string-array>
     <item name="importance_default" format="float" type="string">0.5</item>
-    <string name="importance_message">Choose your destiny</string>
+    <string name="importance_message">Indicate importace</string>
 
     <string name="category_path">Path</string>
     <string name="time_off_path">Time off Path</string>
