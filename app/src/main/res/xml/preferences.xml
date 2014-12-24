@@ -3,8 +3,7 @@
 
     <PreferenceCategory
         android:title="@string/category_contacts"
-        android:key="pref_key_contacts_settings"
-        android:enabled="false"> <!-- not implemented yet -->
+        android:key="pref_key_contacts_settings">
         <PreferenceScreen
             android:title="@string/contact1_config"
             android:key="pref_key_contact1_config">
