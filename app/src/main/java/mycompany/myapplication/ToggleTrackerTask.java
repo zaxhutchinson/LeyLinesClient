@@ -20,6 +20,9 @@ import java.net.UnknownHostException;
 
 /**
  * Created by tnash219 on 10/24/2014.
+ *
+ * CURRENTLY UNUSED - This code (like RequestRefreshTask) has been moved into
+ * the main thread of MyActivity.
  */
 //public class ToggleTrackerTask extends AsyncTask<String, String, UserStatus> {
 public class ToggleTrackerTask extends IntentService {
