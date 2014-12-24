@@ -22,8 +22,10 @@ import java.util.Date;
 
 /**
  * Created by tnash219 on 10/21/2014.
+ *
+ * CURRENTLY UNUSED - Code was moved into the main activity due to the
+ * blocking nature of async tasks.
  */
-
 
 public class RequestRefreshTask extends AsyncTask<String, String, UserStatus> {
 
