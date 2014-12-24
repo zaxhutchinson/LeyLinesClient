@@ -19,7 +19,8 @@ import java.net.UnknownHostException;
 
 
 /**
- * Created by tnash219 on 10/18/2014.
+ * not currently implemented/to be removed
+ * early debug code for setting up connections with server
  */
 public class SendToServer extends DialogFragment {
 

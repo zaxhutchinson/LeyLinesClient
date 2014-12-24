@@ -16,7 +16,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,7 +40,8 @@ import java.net.UnknownHostException;
 import java.util.Map;
 
 /**
- * Created by tnash219 on 11/16/2014.
+ * first (or second depending on who you ask) stop for users of Leylines
+ * here is where you set up an account and change your settings for use
  */
 public class SettingsActivity extends ActionBarActivity implements
         AdapterView.OnItemSelectedListener,

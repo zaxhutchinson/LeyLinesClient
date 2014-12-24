@@ -11,7 +11,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Created by tnash219 on 10/24/2014.
+ * not currently implemented
+ * indicates to the server if the user would like to create paths automatically or not
  */
 public class TogglePathTask extends AsyncTask<String, Void, String[]> {
     Activity activity = new Activity();

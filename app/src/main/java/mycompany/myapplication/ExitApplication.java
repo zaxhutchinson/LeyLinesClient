@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
 /**
- * Created by tnash219 on 10/20/2014.
+ * removes the application from the foreground
  */
 public class ExitApplication extends DialogFragment {
     Activity contentActivity = new Activity();

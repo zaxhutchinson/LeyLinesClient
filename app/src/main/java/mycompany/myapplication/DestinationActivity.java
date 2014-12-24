@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.DateFormat;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,7 +21,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by tnash219 on 11/29/2014.
+ * not currently implemented
+ * allows users to indicate destinations to the server
  */
 public class DestinationActivity extends FragmentActivity implements View.OnClickListener {
 

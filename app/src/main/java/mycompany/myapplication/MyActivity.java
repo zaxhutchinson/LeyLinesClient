@@ -1,38 +1,26 @@
 package mycompany.myapplication;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.LocationListener;
-import android.os.Environment;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesClient;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Map;
 
 /* Leylines Main Activity:
  * Created by Tamel Nash
@@ -82,6 +70,12 @@ public class MyActivity extends ActionBarActivity implements
         Button pathButton = (Button)findViewById(R.id.pathButton);
         pathButton.setOnClickListener(this);
         pathButton.setEnabled(false);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (sharedPreferences.getBoolean("pref_key_account_setup",false) && sharedPreferences.contains("pref_key_last_update")) {
+
+        }
 
     }
 
@@ -211,6 +205,7 @@ public class MyActivity extends ActionBarActivity implements
                     editor.putBoolean("pref_key_tracker_enabled", Boolean.valueOf(retrievedPreference[1]));
                     editor.putString("pref_key_display_status", retrievedPreference[2]);
                     editor.putBoolean("pref_key_automatic_path", Boolean.valueOf(retrievedPreference[3]));
+                    editor.putLong("pref_key_last_update", System.currentTimeMillis());
                     editor.apply();
                 }
 

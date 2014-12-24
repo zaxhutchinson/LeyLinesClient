@@ -1,7 +1,5 @@
 package mycompany.myapplication;
 
-import android.app.Activity;
-
 /**
  * Created by tnash219 on 10/22/2014.
  */

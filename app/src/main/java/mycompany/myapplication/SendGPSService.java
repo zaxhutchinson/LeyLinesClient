@@ -15,9 +15,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Created by tnash on 12/22/14.
  *
- * CURRENT UNUSED -- Combined GPS collection and sending into
+ * CURRENTLY UNUSED -- Combined GPS collection and sending into
  * a single entity. The code below is now in MockGPSService.
  */
 public class SendGPSService extends IntentService {

@@ -6,17 +6,9 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
 /**
- * Created by tnash219 on 10/22/2014.
+ * to be removed
+ * was part of a two part status verification handshake
  */
 public class RetrieveStatusTask extends AsyncTask<String, UserStatus, String[]> {
 

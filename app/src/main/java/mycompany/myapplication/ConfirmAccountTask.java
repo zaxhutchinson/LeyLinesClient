@@ -15,7 +15,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Created by tnash219 on 10/22/2014.
+ * to be removed
+ * was for a two part account creation handshake
  */
 public class ConfirmAccountTask extends AsyncTask<String, Void, String[]> {
 
