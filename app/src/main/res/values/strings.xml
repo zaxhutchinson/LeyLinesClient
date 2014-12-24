@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Ley Lines</string>
+    <string name="app_name">Leylines</string>
     <string name="settings_name">Settings</string>
     <string name="advanced_settings_name">Advanced Settings</string>
-    <string name="ley_lines">Ley Lines instead of Hello World!</string>
+    <string name="leylines">Leylines instead of Hello World!</string>
 
     <!-- menu items -->
     <string name="action_destination">Destination</string>
@@ -13,7 +13,7 @@
 
     <!-- dialog texts -->
     <string name="send_to_server_dialog">Send message to server?</string>
-    <string name="exit_application_dialog">Suspend Ley Lines?</string>
+    <string name="exit_application_dialog">Suspend Leylines?</string>
 
     <!-- responses -->
     <string name="confirm">Confirm</string>
